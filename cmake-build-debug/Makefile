@@ -123,32 +123,59 @@ algobacktesterv2/fast:
 	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/build
 .PHONY : algobacktesterv2/fast
 
-Data-Handling/YahooFinanceCSVReader.o: Data-Handling/YahooFinanceCSVReader.cpp.o
+Data-Handling/DataRetriever.o: Data-Handling/DataRetriever.cpp.o
 
-.PHONY : Data-Handling/YahooFinanceCSVReader.o
+.PHONY : Data-Handling/DataRetriever.o
 
 # target to build an object file
-Data-Handling/YahooFinanceCSVReader.cpp.o:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceCSVReader.cpp.o
-.PHONY : Data-Handling/YahooFinanceCSVReader.cpp.o
+Data-Handling/DataRetriever.cpp.o:
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o
+.PHONY : Data-Handling/DataRetriever.cpp.o
 
-Data-Handling/YahooFinanceCSVReader.i: Data-Handling/YahooFinanceCSVReader.cpp.i
+Data-Handling/DataRetriever.i: Data-Handling/DataRetriever.cpp.i
 
-.PHONY : Data-Handling/YahooFinanceCSVReader.i
+.PHONY : Data-Handling/DataRetriever.i
 
 # target to preprocess a source file
-Data-Handling/YahooFinanceCSVReader.cpp.i:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceCSVReader.cpp.i
-.PHONY : Data-Handling/YahooFinanceCSVReader.cpp.i
+Data-Handling/DataRetriever.cpp.i:
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.i
+.PHONY : Data-Handling/DataRetriever.cpp.i
 
-Data-Handling/YahooFinanceCSVReader.s: Data-Handling/YahooFinanceCSVReader.cpp.s
+Data-Handling/DataRetriever.s: Data-Handling/DataRetriever.cpp.s
 
-.PHONY : Data-Handling/YahooFinanceCSVReader.s
+.PHONY : Data-Handling/DataRetriever.s
 
 # target to generate assembly for a file
-Data-Handling/YahooFinanceCSVReader.cpp.s:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceCSVReader.cpp.s
-.PHONY : Data-Handling/YahooFinanceCSVReader.cpp.s
+Data-Handling/DataRetriever.cpp.s:
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.s
+.PHONY : Data-Handling/DataRetriever.cpp.s
+
+Data-Handling/YahooFinanceDownloader.o: Data-Handling/YahooFinanceDownloader.cpp.o
+
+.PHONY : Data-Handling/YahooFinanceDownloader.o
+
+# target to build an object file
+Data-Handling/YahooFinanceDownloader.cpp.o:
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o
+.PHONY : Data-Handling/YahooFinanceDownloader.cpp.o
+
+Data-Handling/YahooFinanceDownloader.i: Data-Handling/YahooFinanceDownloader.cpp.i
+
+.PHONY : Data-Handling/YahooFinanceDownloader.i
+
+# target to preprocess a source file
+Data-Handling/YahooFinanceDownloader.cpp.i:
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.i
+.PHONY : Data-Handling/YahooFinanceDownloader.cpp.i
+
+Data-Handling/YahooFinanceDownloader.s: Data-Handling/YahooFinanceDownloader.cpp.s
+
+.PHONY : Data-Handling/YahooFinanceDownloader.s
+
+# target to generate assembly for a file
+Data-Handling/YahooFinanceDownloader.cpp.s:
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.s
+.PHONY : Data-Handling/YahooFinanceDownloader.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,9 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... algobacktesterv2"
-	@echo "... Data-Handling/YahooFinanceCSVReader.o"
-	@echo "... Data-Handling/YahooFinanceCSVReader.i"
-	@echo "... Data-Handling/YahooFinanceCSVReader.s"
+	@echo "... Data-Handling/DataRetriever.o"
+	@echo "... Data-Handling/DataRetriever.i"
+	@echo "... Data-Handling/DataRetriever.s"
+	@echo "... Data-Handling/YahooFinanceDownloader.o"
+	@echo "... Data-Handling/YahooFinanceDownloader.i"
+	@echo "... Data-Handling/YahooFinanceDownloader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

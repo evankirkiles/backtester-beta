@@ -92,10 +92,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceCSVReader.cpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.cpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceCSVReader.hpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.hpp">
+			<Option target="algobacktesterv2"/>
+		</Unit>
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.cpp">
+			<Option target="algobacktesterv2"/>
+		</Unit>
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.hpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
 		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/constants.hpp">

@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceCSVReader.cpp" "/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceCSVReader.cpp.o"
+  "/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.cpp" "/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o"
+  "/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.cpp" "/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o"
   "/Users/samkirkiles/Desktop/algobacktesterv2/main.cpp" "/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles/algobacktesterv2.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

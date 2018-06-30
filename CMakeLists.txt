@@ -12,7 +12,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 add_executable(algobacktesterv2 main.cpp
-        Data-Handling/YahooFinanceCSVReader.cpp
+        Data-Handling/YahooFinanceDownloader.cpp
+        Data-Handling/DataRetriever.cpp
         constants.hpp)
 
 find_package(Boost REQUIRED)

@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/algobacktesterv2.dir/main.cpp.o"
-  "CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceCSVReader.cpp.o"
+  "CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o"
+  "CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o"
   "algobacktesterv2.pdb"
   "algobacktesterv2"
 )
