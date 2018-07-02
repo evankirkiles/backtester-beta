@@ -68,6 +68,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/algobacktester_run.dir/DependInfo.cmake"
+  "backtester/CMakeFiles/backtester.dir/DependInfo.cmake"
   "backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   "backtester_tests/lib/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
   "backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/DependInfo.cmake"

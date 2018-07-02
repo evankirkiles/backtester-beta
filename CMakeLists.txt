@@ -21,6 +21,8 @@ include_directories(backtester)
 add_subdirectory(backtester)
 add_subdirectory(backtester_tests)
 
+target_link_libraries(backtester)
+
 find_package(Boost REQUIRED)
 IF (BOOST_FOUND)
     include_directories(${Boost_INCLUDE_DIR})

@@ -222,6 +222,9 @@ algobacktesterv2_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2
 //Value Computed by CMake
 backtester_BINARY_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester
 
+//Dependencies for target
+backtester_LIB_DEPENDS:STATIC=
+
 //Value Computed by CMake
 backtester_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/backtester
 

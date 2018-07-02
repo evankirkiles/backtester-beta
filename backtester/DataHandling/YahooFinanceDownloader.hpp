@@ -34,8 +34,20 @@ public:
     void downloadCSV(std::string symbol, unsigned long startdate, unsigned long enddate);
 
 private:
+
     // Gets the cookie and crumb data from Yahoo Finance
-    const char* get_crumb_and_cookies();
+    const char* get_crumb_and_cookies(const std::string &symbol);
+
+
+    // String replacing function for formatting the crumb
+    static inline void ReplaceAll(std::string &str, const std::string& from, const std::string& to)
+    {
+        size_t start_pos = 0;
+        while(std::string::npos != (start_pos = str.find(from, start_pos))) {
+            str.replace(start_pos, from.length(), to);
+            start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+        }
+    }
 };
 
 #endif /* ALGOBACKTESTERV2_YAHOOFINANCEDOWNLOADER_HPP */

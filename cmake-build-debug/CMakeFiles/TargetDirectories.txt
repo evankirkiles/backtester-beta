@@ -3,6 +3,7 @@
 /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles/algobacktester_run.dir
 /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester/CMakeFiles/rebuild_cache.dir
 /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester/CMakeFiles/edit_cache.dir
+/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester/CMakeFiles/backtester.dir
 /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester_tests/CMakeFiles/rebuild_cache.dir
 /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester_tests/CMakeFiles/edit_cache.dir
 /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester_tests/lib/googletest/CMakeFiles/rebuild_cache.dir

@@ -124,6 +124,19 @@ algobacktester_run/fast:
 .PHONY : algobacktester_run/fast
 
 #=============================================================================
+# Target rules for targets named backtester
+
+# Build rule for target.
+backtester: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 backtester
+.PHONY : backtester
+
+# fast build rule for target.
+backtester/fast:
+	$(MAKE) -f backtester/CMakeFiles/backtester.dir/build.make backtester/CMakeFiles/backtester.dir/build
+.PHONY : backtester/fast
+
+#=============================================================================
 # Target rules for targets named gtest_main
 
 # Build rule for target.
@@ -252,6 +265,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... algobacktester_run"
+	@echo "... backtester"
 	@echo "... gtest_main"
 	@echo "... gtest"
 	@echo "... runbacktestertests"

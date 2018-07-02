@@ -100,12 +100,12 @@ clean: CMakeFiles/algobacktester_run.dir/clean
 # Directory level rules for directory backtester
 
 # Convenience name for "all" pass in the directory.
-backtester/all:
+backtester/all: backtester/CMakeFiles/backtester.dir/all
 
 .PHONY : backtester/all
 
 # Convenience name for "clean" pass in the directory.
-backtester/clean:
+backtester/clean: backtester/CMakeFiles/backtester.dir/clean
 
 .PHONY : backtester/clean
 
@@ -113,6 +113,43 @@ backtester/clean:
 backtester/preinstall:
 
 .PHONY : backtester/preinstall
+
+#=============================================================================
+# Target rules for target backtester/CMakeFiles/backtester.dir
+
+# All Build rule for target.
+backtester/CMakeFiles/backtester.dir/all:
+	$(MAKE) -f backtester/CMakeFiles/backtester.dir/build.make backtester/CMakeFiles/backtester.dir/depend
+	$(MAKE) -f backtester/CMakeFiles/backtester.dir/build.make backtester/CMakeFiles/backtester.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=5,6,7 "Built target backtester"
+.PHONY : backtester/CMakeFiles/backtester.dir/all
+
+# Include target in all.
+all: backtester/CMakeFiles/backtester.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+backtester/CMakeFiles/backtester.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 backtester/CMakeFiles/backtester.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles 0
+.PHONY : backtester/CMakeFiles/backtester.dir/rule
+
+# Convenience name for target.
+backtester: backtester/CMakeFiles/backtester.dir/rule
+
+.PHONY : backtester
+
+# clean rule for target.
+backtester/CMakeFiles/backtester.dir/clean:
+	$(MAKE) -f backtester/CMakeFiles/backtester.dir/build.make backtester/CMakeFiles/backtester.dir/clean
+.PHONY : backtester/CMakeFiles/backtester.dir/clean
+
+# clean rule for target.
+clean: backtester/CMakeFiles/backtester.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Directory level rules for directory backtester_tests
@@ -162,7 +199,7 @@ backtester_tests/lib/googletest/preinstall:
 backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/all: backtester_tests/lib/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/build.make backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/build.make backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=10,11 "Built target gtest_main"
 .PHONY : backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/all
 
 # Include target in all.
@@ -199,7 +236,7 @@ clean: backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/clean
 backtester_tests/lib/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f backtester_tests/lib/googletest/CMakeFiles/gtest.dir/build.make backtester_tests/lib/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f backtester_tests/lib/googletest/CMakeFiles/gtest.dir/build.make backtester_tests/lib/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=8,9 "Built target gtest"
 .PHONY : backtester_tests/lib/googletest/CMakeFiles/gtest.dir/all
 
 # Include target in all.
@@ -251,11 +288,12 @@ backtester_tests/Tests/preinstall:
 # Target rules for target backtester_tests/Tests/CMakeFiles/runbacktestertests.dir
 
 # All Build rule for target.
+backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/all: backtester/CMakeFiles/backtester.dir/all
 backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/all: backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/all
 backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/all: backtester_tests/lib/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/build.make backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/depend
 	$(MAKE) -f backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/build.make backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=9,10 "Built target runbacktestertests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=12,13 "Built target runbacktestertests"
 .PHONY : backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/all
 
 # Include target in all.
@@ -265,7 +303,7 @@ all: backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/all
 
 # Build rule for subdir invocation for target.
 backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles 0
 .PHONY : backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/rule
