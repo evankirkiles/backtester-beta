@@ -92,19 +92,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.cpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/DataRetriever.cpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.hpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/DataRetriever.hpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.cpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/YahooFinanceDownloader.cpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.hpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/YahooFinanceDownloader.hpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
-		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/constants.hpp">
+		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/backtester/constants.hpp">
 			<Option target="algobacktesterv2"/>
 		</Unit>
 		<Unit filename="/Users/samkirkiles/Desktop/algobacktesterv2/main.cpp">

@@ -111,71 +111,110 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named algobacktesterv2
+# Target rules for targets named algobacktester_run
 
 # Build rule for target.
-algobacktesterv2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 algobacktesterv2
-.PHONY : algobacktesterv2
+algobacktester_run: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 algobacktester_run
+.PHONY : algobacktester_run
 
 # fast build rule for target.
-algobacktesterv2/fast:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/build
-.PHONY : algobacktesterv2/fast
+algobacktester_run/fast:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/build
+.PHONY : algobacktester_run/fast
 
-Data-Handling/DataRetriever.o: Data-Handling/DataRetriever.cpp.o
+#=============================================================================
+# Target rules for targets named gtest_main
 
-.PHONY : Data-Handling/DataRetriever.o
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) -f backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/build.make backtester_tests/lib/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) -f backtester_tests/lib/googletest/CMakeFiles/gtest.dir/build.make backtester_tests/lib/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named runbacktestertests
+
+# Build rule for target.
+runbacktestertests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 runbacktestertests
+.PHONY : runbacktestertests
+
+# fast build rule for target.
+runbacktestertests/fast:
+	$(MAKE) -f backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/build.make backtester_tests/Tests/CMakeFiles/runbacktestertests.dir/build
+.PHONY : runbacktestertests/fast
+
+backtester/DataHandling/DataRetriever.o: backtester/DataHandling/DataRetriever.cpp.o
+
+.PHONY : backtester/DataHandling/DataRetriever.o
 
 # target to build an object file
-Data-Handling/DataRetriever.cpp.o:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o
-.PHONY : Data-Handling/DataRetriever.cpp.o
+backtester/DataHandling/DataRetriever.cpp.o:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/backtester/DataHandling/DataRetriever.cpp.o
+.PHONY : backtester/DataHandling/DataRetriever.cpp.o
 
-Data-Handling/DataRetriever.i: Data-Handling/DataRetriever.cpp.i
+backtester/DataHandling/DataRetriever.i: backtester/DataHandling/DataRetriever.cpp.i
 
-.PHONY : Data-Handling/DataRetriever.i
+.PHONY : backtester/DataHandling/DataRetriever.i
 
 # target to preprocess a source file
-Data-Handling/DataRetriever.cpp.i:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.i
-.PHONY : Data-Handling/DataRetriever.cpp.i
+backtester/DataHandling/DataRetriever.cpp.i:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/backtester/DataHandling/DataRetriever.cpp.i
+.PHONY : backtester/DataHandling/DataRetriever.cpp.i
 
-Data-Handling/DataRetriever.s: Data-Handling/DataRetriever.cpp.s
+backtester/DataHandling/DataRetriever.s: backtester/DataHandling/DataRetriever.cpp.s
 
-.PHONY : Data-Handling/DataRetriever.s
+.PHONY : backtester/DataHandling/DataRetriever.s
 
 # target to generate assembly for a file
-Data-Handling/DataRetriever.cpp.s:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.s
-.PHONY : Data-Handling/DataRetriever.cpp.s
+backtester/DataHandling/DataRetriever.cpp.s:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/backtester/DataHandling/DataRetriever.cpp.s
+.PHONY : backtester/DataHandling/DataRetriever.cpp.s
 
-Data-Handling/YahooFinanceDownloader.o: Data-Handling/YahooFinanceDownloader.cpp.o
+backtester/DataHandling/YahooFinanceDownloader.o: backtester/DataHandling/YahooFinanceDownloader.cpp.o
 
-.PHONY : Data-Handling/YahooFinanceDownloader.o
+.PHONY : backtester/DataHandling/YahooFinanceDownloader.o
 
 # target to build an object file
-Data-Handling/YahooFinanceDownloader.cpp.o:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o
-.PHONY : Data-Handling/YahooFinanceDownloader.cpp.o
+backtester/DataHandling/YahooFinanceDownloader.cpp.o:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o
+.PHONY : backtester/DataHandling/YahooFinanceDownloader.cpp.o
 
-Data-Handling/YahooFinanceDownloader.i: Data-Handling/YahooFinanceDownloader.cpp.i
+backtester/DataHandling/YahooFinanceDownloader.i: backtester/DataHandling/YahooFinanceDownloader.cpp.i
 
-.PHONY : Data-Handling/YahooFinanceDownloader.i
+.PHONY : backtester/DataHandling/YahooFinanceDownloader.i
 
 # target to preprocess a source file
-Data-Handling/YahooFinanceDownloader.cpp.i:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.i
-.PHONY : Data-Handling/YahooFinanceDownloader.cpp.i
+backtester/DataHandling/YahooFinanceDownloader.cpp.i:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.i
+.PHONY : backtester/DataHandling/YahooFinanceDownloader.cpp.i
 
-Data-Handling/YahooFinanceDownloader.s: Data-Handling/YahooFinanceDownloader.cpp.s
+backtester/DataHandling/YahooFinanceDownloader.s: backtester/DataHandling/YahooFinanceDownloader.cpp.s
 
-.PHONY : Data-Handling/YahooFinanceDownloader.s
+.PHONY : backtester/DataHandling/YahooFinanceDownloader.s
 
 # target to generate assembly for a file
-Data-Handling/YahooFinanceDownloader.cpp.s:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.s
-.PHONY : Data-Handling/YahooFinanceDownloader.cpp.s
+backtester/DataHandling/YahooFinanceDownloader.cpp.s:
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.s
+.PHONY : backtester/DataHandling/YahooFinanceDownloader.cpp.s
 
 main.o: main.cpp.o
 
@@ -183,7 +222,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -192,7 +231,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -201,7 +240,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/algobacktester_run.dir/build.make CMakeFiles/algobacktester_run.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -212,13 +251,16 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... algobacktesterv2"
-	@echo "... Data-Handling/DataRetriever.o"
-	@echo "... Data-Handling/DataRetriever.i"
-	@echo "... Data-Handling/DataRetriever.s"
-	@echo "... Data-Handling/YahooFinanceDownloader.o"
-	@echo "... Data-Handling/YahooFinanceDownloader.i"
-	@echo "... Data-Handling/YahooFinanceDownloader.s"
+	@echo "... algobacktester_run"
+	@echo "... gtest_main"
+	@echo "... gtest"
+	@echo "... runbacktestertests"
+	@echo "... backtester/DataHandling/DataRetriever.o"
+	@echo "... backtester/DataHandling/DataRetriever.i"
+	@echo "... backtester/DataHandling/DataRetriever.s"
+	@echo "... backtester/DataHandling/YahooFinanceDownloader.o"
+	@echo "... backtester/DataHandling/YahooFinanceDownloader.i"
+	@echo "... backtester/DataHandling/YahooFinanceDownloader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

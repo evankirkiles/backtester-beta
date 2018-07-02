@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(algobacktesterv2)
+project(algobacktester)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
@@ -11,10 +11,15 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-add_executable(algobacktesterv2 main.cpp
-        Data-Handling/YahooFinanceDownloader.cpp
-        Data-Handling/DataRetriever.cpp
-        constants.hpp)
+add_executable(algobacktester_run
+        main.cpp
+        backtester/DataHandling/DataRetriever.cpp
+        backtester/DataHandling/YahooFinanceDownloader.cpp)
+
+include_directories(backtester)
+
+add_subdirectory(backtester)
+add_subdirectory(backtester_tests)
 
 find_package(Boost REQUIRED)
 IF (BOOST_FOUND)
@@ -23,6 +28,7 @@ endif()
 find_package(CURL REQUIRED)
 IF (CURL_FOUND)
     include_directories(%{CURL_INCLUDE_DIRS})
+    target_link_libraries(algobacktester_run ${CURL_LIBRARIES})
 endif()
 
 include_directories(${APP_DOMAIN})

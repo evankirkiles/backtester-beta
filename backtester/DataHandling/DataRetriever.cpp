@@ -4,8 +4,9 @@
 
 #include "DataRetriever.hpp"
 
+/*
 // Retrieves bars from Yahoo Finance by creating CSVs and reading them
-BarData DataRetriever::getBars(std::string symbol, std::string startdate, std::string enddate) {
+BarData DataRetriever::getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate) {
 
     // Initializes Yahoo Finance Reader and creates csv's with the data
     YahooFinanceDownloader yfd;
@@ -13,35 +14,20 @@ BarData DataRetriever::getBars(std::string symbol, std::string startdate, std::s
 
 
 }
+*/
 
 // Converts time from yyyy-MM-dd to seconds since 1970 epoch
-unsigned long get_epoch_time(std::string date) {
+unsigned long get_epoch_time(const std::string &date) {
 
     // Initialize variables
     struct tm t = {0};
-    size_t pos = 0;
 
-    // Parse through the string and get year, month, and date
-    while (std::string::npos != (pos = date.find("-"))) {
-
-        // Different lengths in the string correspond to different components: year = 4, month = 2
-        switch(pos) {
-            case 4:
-                t.tm_year = std::stoi(date.substr(0, pos));
-                break;
-            case 2:
-                t.tm_mon = std::stoi(date.substr(0, pos));
-                break;
-            default:
-                break;
-        }
-
-        // Erase the interpreted date information from the string
-        date.erase(0, pos + 1);
-    }
-
+    // First four characters will be the year
+    t.tm_year = std::stoi(date.substr(0, 4));
+    // Next two characters will be the month
+    t.tm_mon = std::stoi(date.substr(5, 7));
     // Remaining two characters will be the day
-    t.tm_mday = std::stoi(date);
+    t.tm_mday = std::stoi(date.substr(7, 9));
 
     // Now complete the rest of the format and get time as epoch since 1970
     t.tm_year -= 1900;           // Subtract 1900 here because time_t uses years since 1900
@@ -52,7 +38,7 @@ unsigned long get_epoch_time(std::string date) {
     time_t timeSinceEpoch = mktime(&t);
 
     // Return it as an unsigned long
-    return unsigned long(timeSinceEpoch);
+    return (unsigned long)timeSinceEpoch;
 }
 
 // Converts time from seconds since 1970 epoch to yyyy-MM-dd

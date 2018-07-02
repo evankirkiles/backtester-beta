@@ -25,14 +25,14 @@ class DataRetriever {
 public:
 
     // Basic default constructor
-    DataRetriever() = default;
+    explicit DataRetriever() = default;
     // Downloads the .csv and returns its data in BarData format
-    BarData getBars(std::string symbol, std::string startdate, std::string enddate);
+    BarData getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate);
 
 };
 
 // Global functions for converting epoch date to readable string and back
-unsigned long get_epoch_time(std::string date);
+unsigned long get_epoch_time(const std::string &date);
 std::string get_std_time(unsigned long epochtime);
 
 #endif //ALGOBACKTESTERV2_DATARETRIEVER_HPP

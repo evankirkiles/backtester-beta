@@ -3,7 +3,9 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
-      <file path="$PROJECT_DIR$/Data-Handling" />
+      <file path="$PROJECT_DIR$/backtester" />
+      <file path="$PROJECT_DIR$/backtester/DataHandling" />
+      <file path="$PROJECT_DIR$/backtester_tests" />
     </sourceRoots>
   </component>
   <component name="JavaScriptSettings">

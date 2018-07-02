@@ -81,67 +81,68 @@ CMakeFiles/algobacktesterv2.dir/main.cpp.o.provides: CMakeFiles/algobacktesterv2
 CMakeFiles/algobacktesterv2.dir/main.cpp.o.provides.build: CMakeFiles/algobacktesterv2.dir/main.cpp.o
 
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o: CMakeFiles/algobacktesterv2.dir/flags.make
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o: ../Data-Handling/YahooFinanceDownloader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o -c /Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.cpp
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o: CMakeFiles/algobacktesterv2.dir/flags.make
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o: ../backtester/DataHandling/YahooFinanceDownloader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o -c /Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/YahooFinanceDownloader.cpp
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.cpp > CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.i
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/YahooFinanceDownloader.cpp > CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.i
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/YahooFinanceDownloader.cpp -o CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.s
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/YahooFinanceDownloader.cpp -o CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.s
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.requires:
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.requires:
 
-.PHONY : CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.requires
+.PHONY : CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.requires
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.provides: CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.requires
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.provides.build
-.PHONY : CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.provides
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.provides: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.requires
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.provides.build
+.PHONY : CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.provides
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.provides.build: CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.provides.build: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o
 
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o: CMakeFiles/algobacktesterv2.dir/flags.make
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o: ../Data-Handling/DataRetriever.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o -c /Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.cpp
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o: CMakeFiles/algobacktesterv2.dir/flags.make
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o: ../backtester/DataHandling/DataRetriever.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o -c /Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/DataRetriever.cpp
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.cpp > CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.i
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/DataRetriever.cpp > CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.i
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samkirkiles/Desktop/algobacktesterv2/Data-Handling/DataRetriever.cpp -o CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.s
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samkirkiles/Desktop/algobacktesterv2/backtester/DataHandling/DataRetriever.cpp -o CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.s
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.requires:
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.requires:
 
-.PHONY : CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.requires
+.PHONY : CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.requires
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.provides: CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.requires
-	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.provides.build
-.PHONY : CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.provides
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.provides: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.requires
+	$(MAKE) -f CMakeFiles/algobacktesterv2.dir/build.make CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.provides.build
+.PHONY : CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.provides
 
-CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.provides.build: CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o
+CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.provides.build: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o
 
 
 # Object files for target algobacktesterv2
 algobacktesterv2_OBJECTS = \
 "CMakeFiles/algobacktesterv2.dir/main.cpp.o" \
-"CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o" \
-"CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o"
+"CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o" \
+"CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o"
 
 # External object files for target algobacktesterv2
 algobacktesterv2_EXTERNAL_OBJECTS =
 
 algobacktesterv2: CMakeFiles/algobacktesterv2.dir/main.cpp.o
-algobacktesterv2: CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o
-algobacktesterv2: CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o
+algobacktesterv2: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o
+algobacktesterv2: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o
 algobacktesterv2: CMakeFiles/algobacktesterv2.dir/build.make
+algobacktesterv2: /usr/lib/libcurl.dylib
 algobacktesterv2: CMakeFiles/algobacktesterv2.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable algobacktesterv2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/algobacktesterv2.dir/link.txt --verbose=$(VERBOSE)
@@ -152,8 +153,8 @@ CMakeFiles/algobacktesterv2.dir/build: algobacktesterv2
 .PHONY : CMakeFiles/algobacktesterv2.dir/build
 
 CMakeFiles/algobacktesterv2.dir/requires: CMakeFiles/algobacktesterv2.dir/main.cpp.o.requires
-CMakeFiles/algobacktesterv2.dir/requires: CMakeFiles/algobacktesterv2.dir/Data-Handling/YahooFinanceDownloader.cpp.o.requires
-CMakeFiles/algobacktesterv2.dir/requires: CMakeFiles/algobacktesterv2.dir/Data-Handling/DataRetriever.cpp.o.requires
+CMakeFiles/algobacktesterv2.dir/requires: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/YahooFinanceDownloader.cpp.o.requires
+CMakeFiles/algobacktesterv2.dir/requires: CMakeFiles/algobacktesterv2.dir/backtester/DataHandling/DataRetriever.cpp.o.requires
 
 .PHONY : CMakeFiles/algobacktesterv2.dir/requires
 

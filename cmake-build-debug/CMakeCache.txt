@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Build shared libraries (DLLs).
+BUILD_SHARED_LIBS:BOOL=OFF
+
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=Boost_DIR-NOTFOUND
 
@@ -141,7 +144,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 CMAKE_OSX_SYSROOT:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=algobacktesterv2
+CMAKE_PROJECT_NAME:STATIC=algobacktester
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
@@ -199,13 +202,62 @@ CURL_INCLUDE_DIR:PATH=/usr/include
 CURL_LIBRARY:FILEPATH=/usr/lib/libcurl.dylib
 
 //Path to a program.
+PYTHON_EXECUTABLE:FILEPATH=/Users/samkirkiles/anaconda3/bin/python
+
+//Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
+
+//Value Computed by CMake
+algobacktester_BINARY_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug
+
+//Value Computed by CMake
+algobacktester_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2
 
 //Value Computed by CMake
 algobacktesterv2_BINARY_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug
 
 //Value Computed by CMake
 algobacktesterv2_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2
+
+//Value Computed by CMake
+backtester_BINARY_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester
+
+//Value Computed by CMake
+backtester_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/backtester
+
+//Value Computed by CMake
+backtester_tests_BINARY_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester_tests
+
+//Value Computed by CMake
+backtester_tests_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/backtester_tests
+
+//Value Computed by CMake
+gtest_BINARY_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/cmake-build-debug/backtester_tests/lib/googletest
+
+//Dependencies for target
+gtest_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+gtest_SOURCE_DIR:STATIC=/Users/samkirkiles/Desktop/algobacktesterv2/backtester_tests/lib/googletest
+
+//Build gtest's sample programs.
+gtest_build_samples:BOOL=OFF
+
+//Build all of gtest's own tests.
+gtest_build_tests:BOOL=OFF
+
+//Disable uses of pthreads in gtest.
+gtest_disable_pthreads:BOOL=OFF
+
+//Use shared (DLL) run-time lib even when Google Test is built
+// as static lib.
+gtest_force_shared_crt:BOOL=OFF
+
+//Build gtest with internal symbols hidden in shared libraries.
+gtest_hide_internal_symbols:BOOL=OFF
+
+//Dependencies for the target
+gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 
 ########################
@@ -288,6 +340,10 @@ CMAKE_GENERATOR:INTERNAL=Unix Makefiles
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Have symbol pthread_create
+CMAKE_HAVE_LIBC_CREATE:INTERNAL=1
+//Have include pthread.h
+CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/Users/samkirkiles/Desktop/algobacktesterv2
@@ -310,7 +366,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -357,6 +413,12 @@ CURL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 CURL_LIBRARY-ADVANCED:INTERNAL=1
 //Details about finding CURL
 FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[/usr/lib/libcurl.dylib][/usr/include][v7.54.0()]
+//Details about finding PythonInterp
+FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/Users/samkirkiles/anaconda3/bin/python][v3.6.4()]
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//ADVANCED property for variable: PYTHON_EXECUTABLE
+PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
 //Components requested for this build tree.
