@@ -8,7 +8,7 @@
 // Use a namespace for readability
 namespace constants {
 
-    // Define all global constants here; project directories, etc.
+    // DECLARE all global constants here; project directories, etc.
     // Folder for the CSV files to be downloaded into
     extern const char* CSV_DIR;
     // Directory of crumb and cookie files

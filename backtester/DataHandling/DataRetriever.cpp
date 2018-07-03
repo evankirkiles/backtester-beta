@@ -4,17 +4,49 @@
 
 #include "DataRetriever.hpp"
 
-/*
 // Retrieves bars from Yahoo Finance by creating CSVs and reading them
 BarData DataRetriever::getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate) {
 
-    // Initializes Yahoo Finance Reader and creates csv's with the data
+    // Initializes Yahoo Finance Reader on the stack and creates csv's with the data
     YahooFinanceDownloader yfd;
     yfd.downloadCSV(symbol, get_epoch_time(startdate), get_epoch_time(enddate));
 
+    // Cycle through the .csv and append each bar to the information
+    // To improve performance, cap the size of the vector as the number of days between start and end
+    BarData bd;
+    bd.dates.reserve(static_cast<unsigned long>(floor((get_epoch_time(enddate) - get_epoch_time(startdate)) / 86400)));
 
+    // File line iterator variables
+    std::ifstream csv(std::string(constants::CSV_DIR + symbol + ".csv").c_str());
+    std::string line;
+    // Skip first line which contains column headers
+    std::getline(csv, line);
+
+    // Begin iteration through the csv file
+    while (getline(csv, line)) {
+
+        // Get the string stream
+        replace(line.begin(), line.end(), ',', ' ');
+        std::stringstream ss(line);
+
+        // First column will be the date
+        std::string date;
+        unsigned long epochtime;
+        ss >> date;
+        epochtime = get_epoch_time(date);
+        bd.dates.emplace_back(epochtime);
+
+        // Next columns follow the format O H L C A V
+        ss >> bd.bars[epochtime]["open"];
+        ss >> bd.bars[epochtime]["high"];
+        ss >> bd.bars[epochtime]["low"];
+        ss >> bd.bars[epochtime]["close"];
+        ss >> bd.bars[epochtime]["adj"];
+        ss >> bd.bars[epochtime]["volume"];
+    }
+
+    return bd;
 }
-*/
 
 // Converts time from yyyy-MM-dd to seconds since 1970 epoch
 unsigned long get_epoch_time(const std::string &date) {

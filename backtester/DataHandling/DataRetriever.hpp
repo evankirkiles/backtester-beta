@@ -5,6 +5,11 @@
 #ifndef ALGOBACKTESTERV2_DATARETRIEVER_HPP
 #define ALGOBACKTESTERV2_DATARETRIEVER_HPP
 
+// Include for string stream
+#ifndef stringstream
+#include <sstream>
+#endif
+
 #include "YahooFinanceDownloader.hpp"
 
 // Packet of data sent by the CSV Reader
@@ -12,12 +17,9 @@ struct BarData {
 
     // Holds the symbol data for each date
     // Format: bars[symbol][date][open / high / low / close / volume / adj]
-    std::unordered_map<std::string, std::unordered_map<long, std::unordered_map<std::string, double>>> bars;
+    std::unordered_map<unsigned long, std::unordered_map<std::string, double>> bars;
     // Vector holding all the dates, SORTED earliest to latest from beginning to end
-    std::vector<long> allDates;
-    // Holds the current date index for iterating through the bardata
-    unsigned int currentDatesIndex;
-
+    std::vector<unsigned long> dates;
 };
 
 // Reads the data into BarData format from the csv

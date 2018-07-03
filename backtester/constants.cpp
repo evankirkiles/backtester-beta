@@ -7,7 +7,7 @@
 // Use a namespace for readability
 namespace constants {
 
-    // Define all global constants here; project directories, etc.
+    // DEFINE all global constants here; project directories, etc.
     // Folder for the CSV files to be downloaded into
     const char* CSV_DIR = "./backtester/DataHandling/CSV/";
     // Directory of crumb and cookie files
