@@ -10,10 +10,10 @@ namespace constants {
 
     // Define all global constants here; project directories, etc.
     // Folder for the CSV files to be downloaded into
-    const char* CSV_DIR = "./DataHandling/CSV/";
+    extern const char* CSV_DIR;
     // Directory of crumb and cookie files
-    const char* CRUMB_DIR = "./DataHandling/crumb.txt";
-    const char* COOKIE_DIR = "./DataHandling/cookie.txt";
+    extern const char* CRUMB_DIR;
+    extern const char* COOKIE_DIR;
 }
 
 #endif //ALGOBACKTESTERV2_CONSTANTS_HPP

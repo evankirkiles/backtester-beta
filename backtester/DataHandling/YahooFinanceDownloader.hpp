@@ -25,6 +25,9 @@
 // cURL include
 #include <curl/curl.h>
 
+// Program constants include
+#include "constants.hpp"
+
 // Handles downloading Yahoo Finance data into .csv's
 class YahooFinanceDownloader {
 public:
