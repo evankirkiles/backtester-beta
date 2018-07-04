@@ -7,7 +7,7 @@
 // Retrieves bars from Yahoo Finance by creating CSVs and reading them
 BarData DataRetriever::getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate) {
 
-    // Initializes Yahoo Finance Reader on the stack and creates csv's with the data
+    // Initializes Yahoo Finance Reader on the stack and creates a .csv with the data
     YahooFinanceDownloader yfd;
     yfd.downloadCSV(symbol, get_epoch_time(startdate), get_epoch_time(enddate));
 
@@ -59,7 +59,7 @@ unsigned long get_epoch_time(const std::string &date) {
     // Next two characters will be the month
     t.tm_mon = std::stoi(date.substr(5, 7));
     // Remaining two characters will be the day
-    t.tm_mday = std::stoi(date.substr(7, 9));
+    t.tm_mday = std::stoi(date.substr(8, 9));
 
     // Now complete the rest of the format and get time as epoch since 1970
     t.tm_year -= 1900;           // Subtract 1900 here because time_t uses years since 1900

@@ -8,18 +8,29 @@
 // Data Retriever test fixture
 class DataRetrieverFixture : public ::testing::Test {
 protected:
-    virtual void TearDown() {}
-    virtual void SetUp() {}
+    void TearDown() override {}
+    void SetUp() override {}
 
 public:
-    // Instance of Data Retriever
-    std::unique_ptr<DataRetriever> dr;
 
     // Initializes test variables to be used
-    DataRetrieverFixture() : Test(), dr(new DataRetriever()) {};
+    DataRetrieverFixture() : Test() {}
 
     // Destructor
-    virtual ~DataRetrieverFixture() {}
+    ~DataRetrieverFixture() override = default;
 };
 
-// Tests
+// Tests whether the Data Retriever pulls the data from the .csv correctly
+TEST(DataRetrieverFixture, dataformatting) {
+
+    // Instance of Data Retriever
+    std::unique_ptr<DataRetriever> dr(new DataRetriever());
+    BarData bardata = dr->getBars("AAPL", "2017-07-03", "2017-07-10");
+
+    // The dates vector should have 5 dates, like so:
+    std::vector<unsigned long> target = {get_epoch_time("2017-07-03"), get_epoch_time("2017-07-05"),
+                                         get_epoch_time("2017-07-06"), get_epoch_time("2017-07-07"),
+                                         get_epoch_time("2017-07-10")};
+
+    EXPECT_EQ(target, bardata.dates);
+}

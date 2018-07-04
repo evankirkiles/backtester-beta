@@ -8,8 +8,8 @@
 // Yahoo Finance Downloader test fixture
 class YahooFinanceDownloaderFixture : public ::testing::Test {
 protected:
-    virtual void TearDown() {}
-    virtual void SetUp() {}
+    void TearDown() override {}
+    void SetUp() override {}
 
 public:
 
@@ -17,14 +17,11 @@ public:
     YahooFinanceDownloaderFixture() : Test() { }
 
     // Destructor
-    virtual ~YahooFinanceDownloaderFixture() {
-
-        // Removes the files used for testing
-        std::remove((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
-    }
+    ~YahooFinanceDownloaderFixture() override = default;
 };
 
 // Tests whether retrieves the correct crumb
+// Should always pass, unless something intrinsically changes with Yahoo Finance crumb structure
 TEST(YahooFinanceDownloaderFixture, correctcrumb) {
 
     // Instance of Yahoo Finance Downloader
@@ -39,9 +36,13 @@ TEST(YahooFinanceDownloaderFixture, correctcrumb) {
     std::getline(in, str);
 
     EXPECT_NE("{", str);
+
+    // Removes the files used for testing
+    std::remove((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
 }
 
 // Tests whether downloads the correct data
+// Just in case Yahoo Finance ever changes their data download format
 TEST(YahooFinanceDownloaderFixture, csvdownload) {
 
     // Instance of Yahoo Finance Downloader
@@ -57,4 +58,7 @@ TEST(YahooFinanceDownloaderFixture, csvdownload) {
     }
 
     EXPECT_TRUE(working);
+
+    // Removes the files used for testing
+    std::remove((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
 }

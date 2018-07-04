@@ -11,7 +11,8 @@ set(CMAKE_AUTORCC ON)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(runbacktestertests
-        YahooFinanceDownloader_UTESTS.cpp)
+        YahooFinanceDownloader_UTESTS.cpp
+        DataRetriever_UTESTS.cpp)
 
 find_package(Boost REQUIRED)
 IF (BOOST_FOUND)
