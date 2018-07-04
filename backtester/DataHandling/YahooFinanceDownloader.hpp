@@ -34,13 +34,12 @@ public:
     // Basic default constructor
     explicit YahooFinanceDownloader() = default;
     // Function to pull data from Yahoo Finance and put it into a CSV
-    void downloadCSV(std::string symbol, unsigned long startdate, unsigned long enddate);
+    void downloadCSV(std::string symbol, unsigned long startdate, unsigned long enddate, const std::string& interval="1d");
 
 private:
 
     // Gets the cookie and crumb data from Yahoo Finance
     const char* get_crumb_and_cookies(const std::string &symbol);
-
 
     // String replacing function for formatting the crumb
     static inline void ReplaceAll(std::string &str, const std::string& from, const std::string& to)

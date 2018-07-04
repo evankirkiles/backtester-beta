@@ -6,12 +6,13 @@
 #include "YahooFinanceDownloader.hpp"
 
 // Downloads CSV data for the given period and symbol on a daily frequency
-void YahooFinanceDownloader::downloadCSV(std::string symbol, unsigned long startdate, unsigned long enddate) {
+void YahooFinanceDownloader::downloadCSV(std::string symbol, unsigned long startdate, unsigned long enddate,
+                                         const std::string& interval) {
 
     std::string down_url = std::string("https://query1.finance.yahoo.com/v7/finance/download/") + symbol +
                             std::string("?period1=") + std::to_string(startdate) +
                             std::string("&period2=") + std::to_string(enddate) +
-                            std::string("&interval=1d&events=history&crumb=") +
+                            std::string("&interval=") + interval + ("&events=history&crumb=") +
                             std::string(get_crumb_and_cookies(symbol));
 
     // Create cURL session
