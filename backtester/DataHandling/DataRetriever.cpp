@@ -13,17 +13,17 @@
 // @param which          "open", "low", 'high", "close", "adj", "volume"
 // @return               a BarData containing the data of the specified type in "which"
 //
-BarData DataRetriever::getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate,
+BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &startdate, const unsigned long &enddate,
                                const std::string &interval, const std::string &which) {
 
     // Initializes Yahoo Finance Reader on the stack and creates a .csv with the data
     YahooFinanceDownloader yfd;
-    yfd.downloadCSV(symbol, get_epoch_time(startdate), get_epoch_time(enddate), interval);
+    yfd.downloadCSV(symbol, startdate, enddate, interval);
 
     // Cycle through the .csv and append each bar to the information
     // To improve performance, cap the size of the vector as the number of days between start and end
     BarData bd;
-    bd.dates.reserve(static_cast<unsigned long>(ceil((get_epoch_time(enddate) - get_epoch_time(startdate)) / 86400)));
+    bd.dates.reserve(static_cast<unsigned long>(ceil(enddate - startdate) / 86400));
 
     // File line iterator variables
     std::ifstream csv(std::string(constants::CSV_DIR + symbol + ".csv").c_str());

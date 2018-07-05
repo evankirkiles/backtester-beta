@@ -21,6 +21,38 @@ void StaticDataHandler::buildHistory(const std::vector<std::string> &symbol_list
                                      const std::string &enddate, const std::string &interval,
                                      const std::string &which, unsigned int buffer) {
 
-    
+    // Initialize a Data Retriever instance
+    DataRetriever dr;
 
+    // Iterate through each symbol
+    for (const std::string &symbol : symbol_list) {
+
+        // Create a brief BarData object which is decomposed into its data and its dates, the former of
+        // which is put directly into fullhistory and the latter of which is sorted and then appended to fullhistory
+        // Note that the startdate is not the given startdate, but the one [buffer] days earlier
+        BarData info = dr.getBars(symbol, get_epoch_time(enddate),
+                get_epoch_time(startdate) - buffer * 86400, interval, which);
+        fullhistory.bars[symbol] = info.bars[symbol];
+        appendDates(info);
+    }
+}
+
+// Appends the UNIQUE dates from another BarData object into the dates of the fullhistory object.
+// This is necessary because Yahoo Finance has very spotty data, so some symbols may not have data on a given day
+//
+// @param in             the BarData object whose dates are being appended to fullhistory
+//
+void StaticDataHandler::appendDates(const BarData &in) {
+
+    // If the fullhistory's dates are empty, simply place all in
+    if (fullhistory.dates.empty()) {
+        fullhistory.dates = in.dates;
+    } else {
+
+        // Otherwise, use STL container sorting and other permutations to keep all unique dates
+        fullhistory.dates.insert(fullhistory.dates.end(), in.dates.begin(), in.dates.end());
+        std::sort(fullhistory.dates.begin(), fullhistory.dates.end());
+        auto last = std::unique(fullhistory.dates.begin(), fullhistory.dates.end());
+        fullhistory.dates.erase(last, fullhistory.dates.end());
+    }
 }

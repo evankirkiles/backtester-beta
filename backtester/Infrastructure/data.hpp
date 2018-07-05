@@ -20,7 +20,6 @@ public:
     // Interval options are "1d" (daily), "1wk" (weekly), and "1mo" (monthly)
     virtual BarData history(const std::vector<std::string> &symbol_list, const std::string &type,
                             const std::string &interval, unsigned int days) = 0;
-
 };
 
 // First class pulls all the possible required data before the algorithm begins, and then runs algo
@@ -47,6 +46,9 @@ public:
 private:
     // Map of all the data downloaded beforehand in the form of a BarData item
     BarData fullhistory;
+
+    // Function that merges all unique dates of a new BarData's dates vector into fullhistory
+    void appendDates(const BarData &in);
 };
 
 // Second class only pulls data when the algorithm requests it during the algo's run thread

@@ -28,7 +28,7 @@ public:
     // Basic default constructor
     explicit DataRetriever() = default;
     // Downloads the .csv and returns its data in BarData format (FOR THE FIELD YOU REQUEST)
-    BarData getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate,
+    BarData getBars(const std::string &symbol, const unsigned long &startdate, const unsigned long &enddate,
                     const std::string &interval, const std::string &which);
 
 };
