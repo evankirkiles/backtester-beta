@@ -6,7 +6,7 @@
 
 // Retrieves bars from Yahoo Finance by creating CSVs and reading them
 BarData DataRetriever::getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate,
-                                const std::string &which, const std::string&interval) {
+                                const std::string &which, const std::string &interval) {
 
     // Initializes Yahoo Finance Reader on the stack and creates a .csv with the data
     YahooFinanceDownloader yfd;
@@ -38,17 +38,17 @@ BarData DataRetriever::getBars(const std::string &symbol, const std::string &sta
         bd.dates.emplace_back(epochtime);
 
         // Next columns follow the format O H L C A V
-        ss >> bd.bars[epochtime];
+        ss >> bd.bars[symbol][epochtime];
         if (which == "open") { continue; }
-        ss >> bd.bars[epochtime];
+        ss >> bd.bars[symbol][epochtime];
         if (which == "high") { continue; }
-        ss >> bd.bars[epochtime];
+        ss >> bd.bars[symbol][epochtime];
         if (which == "low") { continue; }
-        ss >> bd.bars[epochtime];
+        ss >> bd.bars[symbol][epochtime];
         if (which == "close") { continue; }
-        ss >> bd.bars[epochtime];
+        ss >> bd.bars[symbol][epochtime];
         if (which == "adj") { continue; }
-        ss >> bd.bars[epochtime];
+        ss >> bd.bars[symbol][epochtime];
         if (which == "volume") { continue; }
 
         // If bar data type requested is bad, then throw an exception

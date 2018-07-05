@@ -16,7 +16,7 @@
 struct BarData {
     // Holds the symbol bar-requested data for each date
     // Format: bars[date]
-    std::unordered_map<unsigned long, double> bars;
+    std::unordered_map<std::string, std::unordered_map<unsigned long, double>> bars;
     // Vector holding all the dates, SORTED earliest to latest from beginning to end
     std::vector<unsigned long> dates;
 };
