@@ -26,7 +26,7 @@ TEST(DataRetrieverFixture, datepulling) {
 
     // Instance of Data Retriever
     std::unique_ptr<DataRetriever> dr(new DataRetriever());
-    BarData bardata = dr->getBars("AAPL", "2017-07-03", "2017-07-10");
+    BarData bardata = dr->getBars("AAPL", "2017-07-03", "2017-07-10", "1d", "close");
 
     // The dates vector should have 5 dates, like so:
     std::vector<unsigned long> target = {get_epoch_time("2017-07-03"), get_epoch_time("2017-07-05"),

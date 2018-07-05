@@ -4,9 +4,17 @@
 
 #include "DataRetriever.hpp"
 
-// Retrieves bars from Yahoo Finance by creating CSVs and reading them
+// Retrieves bars from Yahoo Finance by creating .csv's and reading them into BarData format.
+//
+// @param symbol         the symbol for which to get the data
+// @param startdate      the date in yyyy-MM-dd format of the start of the backtest
+// @param enddate        the date in yyyy-MM-dd format of the end of the backtest
+// @param interval       "1d" for daily, "1wk" for weekly, "1mo" for monthly (Yahoo Finance specific)
+// @param which          "open", "low", 'high", "close", "adj", "volume"
+// @return               a BarData containing the data of the specified type in "which"
+//
 BarData DataRetriever::getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate,
-                                const std::string &which, const std::string &interval) {
+                               const std::string &interval, const std::string &which) {
 
     // Initializes Yahoo Finance Reader on the stack and creates a .csv with the data
     YahooFinanceDownloader yfd;
@@ -61,6 +69,10 @@ BarData DataRetriever::getBars(const std::string &symbol, const std::string &sta
 }
 
 // Converts time from yyyy-MM-dd to seconds since 1970 epoch
+//
+// @param date           a string containing the date in yyyy-MM-dd
+// @return               an unsigned long of the date (at 12:00:00.0 A.M EST)
+//
 unsigned long get_epoch_time(const std::string &date) {
 
     // Initialize variables
@@ -79,7 +91,7 @@ unsigned long get_epoch_time(const std::string &date) {
     t.tm_hour = 0;
     t.tm_min = 0;
     t.tm_sec = 0;
-    --t.tm_hour;                 // Subtract 1 here because for some reason the time conversion is an hour late
+    t.tm_hour;
     time_t timeSinceEpoch = mktime(&t);
 
     // Return it as an unsigned long
@@ -87,6 +99,10 @@ unsigned long get_epoch_time(const std::string &date) {
 }
 
 // Converts time from seconds since 1970 epoch to yyyy-MM-dd
+//
+// @param epochtime      the time in seconds since 1970 EST
+// @return               a string containing the date in yyyy-MM-dd
+//
 std::string get_std_time(unsigned long epochtime) {
 
     // Formats the date into yyyy-MM-dd

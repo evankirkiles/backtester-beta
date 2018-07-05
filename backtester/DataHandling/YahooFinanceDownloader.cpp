@@ -5,7 +5,13 @@
 // Includes
 #include "YahooFinanceDownloader.hpp"
 
-// Downloads CSV data for the given period and symbol on a daily frequency
+// Downloads CSV data for the given period and symbol on a specific frequency.
+//
+// @param symbol         the symbol for which to download the data
+// @param startdate      the starting date for the data download period (in seconds since 1970)
+// @param enddate        the ending date for the data download period (in seconds since 1970)
+// @param interval       "1d" for daily, "1wk" for weekly, "1mo" for monthly
+//
 void YahooFinanceDownloader::downloadCSV(std::string symbol, unsigned long startdate, unsigned long enddate,
                                          const std::string& interval) {
 
@@ -47,7 +53,12 @@ void YahooFinanceDownloader::downloadCSV(std::string symbol, unsigned long start
     curl_global_cleanup();
 }
 
-// Fetches cookie and crumb data from Yahoo Finance
+// Fetches cookie and crumb data from Yahoo Finance, returning the crumb and saving the cookie
+// to a file which is used to access the .csv download link externally.
+//
+// @param symbol         the symbol to append to the URL to get the correct crumb
+// @return               the crumb located by the function
+//
 const char* YahooFinanceDownloader::get_crumb_and_cookies(const std::string &symbol) {
 
     // Netscape format for the cookie file

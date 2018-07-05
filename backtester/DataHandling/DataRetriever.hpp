@@ -29,7 +29,7 @@ public:
     explicit DataRetriever() = default;
     // Downloads the .csv and returns its data in BarData format (FOR THE FIELD YOU REQUEST)
     BarData getBars(const std::string &symbol, const std::string &startdate, const std::string &enddate,
-                    const std::string &which, const std::string &interval);
+                    const std::string &interval, const std::string &which);
 
 };
 
