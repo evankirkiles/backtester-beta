@@ -14,7 +14,7 @@
 // @return               a BarData containing the data of the specified type in "which"
 //
 BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &startdate, const unsigned long &enddate,
-                               const std::string &interval, const std::string &which) {
+                               const std::string &interval,  const std::vector<std::string> &which) {
 
     // Initializes Yahoo Finance Reader on the stack and creates a .csv with the data
     YahooFinanceDownloader yfd;
@@ -39,33 +39,35 @@ BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &s
         std::stringstream ss(line);
 
         // First column will be the date
-        std::string date;
+        std::string placeholder;
         unsigned long epochtime;
-        ss >> date;
-        epochtime = get_epoch_time(date);
+        ss >> placeholder;
+        epochtime = get_epoch_time(placeholder);
         bd.dates.emplace_back(epochtime);
 
         // Next columns follow the format O H L C A V
-        ss >> bd.bars[symbol][epochtime];
-        if (which == "open") { continue; }
-        ss >> bd.bars[symbol][epochtime];
-        if (which == "high") { continue; }
-        ss >> bd.bars[symbol][epochtime];
-        if (which == "low") { continue; }
-        ss >> bd.bars[symbol][epochtime];
-        if (which == "close") { continue; }
-        ss >> bd.bars[symbol][epochtime];
-        if (which == "adj") { continue; }
-        ss >> bd.bars[symbol][epochtime];
-        if (which == "volume") { continue; }
-
-        // If bar data type requested is bad, then throw an exception
-        throw std::runtime_error(std::string("Undefined bar type " + which + "."));
+        ss >> placeholder;
+        if (std::find(which.begin(), which.end(), "open") != which.end())
+            bd.bars[symbol]["open"][epochtime] = std::stod(placeholder);
+        ss >> placeholder;
+        if (std::find(which.begin(), which.end(), "high") != which.end())
+            bd.bars[symbol]["high"][epochtime] = std::stod(placeholder);
+        ss >> placeholder;
+        if (std::find(which.begin(), which.end(), "low") != which.end())
+            bd.bars[symbol]["low"][epochtime] = std::stod(placeholder);
+        ss >> placeholder;
+        if (std::find(which.begin(), which.end(), "close") != which.end())
+            bd.bars[symbol]["close"][epochtime] = std::stod(placeholder);
+        ss >> placeholder;
+        if (std::find(which.begin(), which.end(), "adj") != which.end())
+            bd.bars[symbol]["adj"][epochtime] = std::stod(placeholder);
+        ss >> placeholder;
+        if (std::find(which.begin(), which.end(), "volume") != which.end())
+            bd.bars[symbol]["volume"][epochtime] = std::stod(placeholder);
     }
 
     // Return the bardata after all lines have been iterated through
     return bd;
-
 }
 
 // Converts time from yyyy-MM-dd to seconds since 1970 epoch

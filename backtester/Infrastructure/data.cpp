@@ -19,7 +19,7 @@
 //
 void StaticDataHandler::buildHistory(const std::vector<std::string> &symbol_list, const std::string &startdate,
                                      const std::string &enddate, const std::string &interval,
-                                     const std::string &which, unsigned int buffer) {
+                                     const std::vector<std::string> &which, unsigned int buffer) {
 
     // Initialize a Data Retriever instance
     DataRetriever dr;
@@ -37,10 +37,56 @@ void StaticDataHandler::buildHistory(const std::vector<std::string> &symbol_list
     }
 }
 
+// Retrieves the requested N days of history based on the given date in seconds since the 1970 epoch. For the
+// StaticDataHandler class, this accesses the fullhistory BarData object which already has all possible data
+// points that could be requested by the algorithm.
+//
+// @param currentTime     the date, in seconds since 1970 epoch, from which the data is being requested
+// @param symbol_list     the tickers of the symbols for which to retrieve the history
+// @param type            "open", "close", "high", "low", "adj", "volume"
+// @param interval        "1d" for daily, "1wk" for weekly, "1mo" for monthly
+// @param days            the number of days back from the currentTime for which to fetch the data
+// @return                a BarData object containing the bars of the given type for the symbols requested
+//
+BarData StaticDataHandler::history(unsigned long currentTime, const std::vector<std::string> &symbol_list,
+                                   const std::vector<std::string> &which, const std::string &interval, unsigned int days) {
+
+    // Placeholder BarData that is returned
+    BarData bd;
+
+    // Accesses the dates vector and finds the index of the date closest to the current date (below it)
+    // Does this by finding the first value in the vector that is >= than the currentTime, and then
+    // iterating back 1 to get an iterator for the most recent bar's date.
+    auto closest = std::lower_bound(fullhistory.dates.begin(), fullhistory.dates.end(), currentTime);
+    --closest;
+
+    // Then get all the dates necessary and get their data from fullhistory, placing it into BarData
+    for (int i = 0; i < days; ++i){
+        // Put the dates into the dates vector
+        bd.dates.emplace_back(*closest);
+
+        // Iterate through the symbols
+        for (const std::string &symbol : symbol_list) {
+            // Iterate through the requested bars
+            for (const std::string &type : which) {
+
+                // Append the data to the returned BarData
+                bd.bars[symbol][type][*closest] = fullhistory.bars[symbol][type][*closest];
+            }
+        }
+    }
+
+    // Reverse the dates to put them in order
+    std::reverse(bd.dates.begin(), bd.dates.end());
+
+    // Now return the bardata
+    return bd;
+}
+
 // Appends the UNIQUE dates from another BarData object into the dates of the fullhistory object.
 // This is necessary because Yahoo Finance has very spotty data, so some symbols may not have data on a given day
 //
-// @param in             the BarData object whose dates are being appended to fullhistory
+// @param in              the BarData object whose dates are being appended to fullhistory
 //
 void StaticDataHandler::appendDates(const BarData &in) {
 
