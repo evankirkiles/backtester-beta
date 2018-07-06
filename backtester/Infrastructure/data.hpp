@@ -9,6 +9,7 @@
 // based on which data retrieval method the user specified in their algorithm
 
 #include "DataHandling/DataRetriever.hpp"
+#include <gtest/gtest_prod.h>
 
 // This is the abstract base class from which both methods of data retrieval inherit from,
 // simply because they both have the same functions just executed in different ways
@@ -48,8 +49,8 @@ private:
     // Map of all the data downloaded beforehand in the form of a BarData item
     BarData  fullhistory;
 
-    // Function that merges all unique dates of a new BarData's dates vector into fullhistory
-    void appendDates(const BarData &in);
+    // Unit test related private friend members
+    FRIEND_TEST(DataHandlerFixture, static_buildshistory);
 };
 
 // Second class only pulls data when the algorithm requests it during the algo's run thread
@@ -68,5 +69,7 @@ class DynamicDataHandler:DataHandler {
                     const std::vector<std::string> &which, const std::string &interval, unsigned int days) override;
 };
 
+// Function that merges all unique dates of a new BarData's dates vector into fullhistory
+void appendDates(const BarData &in, BarData &target);
 
 #endif //ALGOBACKTESTER_DATA_HPP
