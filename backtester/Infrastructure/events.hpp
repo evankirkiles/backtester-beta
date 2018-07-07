@@ -37,7 +37,7 @@ struct SignalEvent: public Event {
     const double percentage;
 
     // Constructor for the SignalEvent
-    SignalEvent(const std::string& symbol, const double percentage, const unsigned long datetime,
+    SignalEvent(const std::string& symbol, double percentage, unsigned long datetime,
                 const std::string &target);
 };
 
@@ -46,14 +46,14 @@ struct SignalEvent: public Event {
 // a single bar, as well as calculate any necessary risk management options.
 //
 // @member symbol         the symbol for which the signal is being sent
-// @member quantity       the number of shares requested (positive for long, negative for short)
+// @member percentage     the percent of holdings requested for the symbol (positive for long, negative for short)
 //
 struct OrderEvent: public Event {
     const std::string symbol;
-    const int quantity;
+    const double percentage;
 
     // Constructor for the OrderEvent
-    OrderEvent(const std::string& symbol, const int quantity, const unsigned long datetime,
+    OrderEvent(const std::string& symbol, double percentage, unsigned long datetime,
                const std::string &target, const std::string &location);
 };
 
@@ -73,8 +73,8 @@ struct FillEvent: public Event {
     const double cost, slippage, commission;
 
     // Constructor for the FillEvent
-    FillEvent(const std::string& symbol, const int quantity, const double cost, const double slippage,
-              const double commission, const unsigned long datetime, const std::string &target, const std::string &location);
+    FillEvent(const std::string& symbol, int quantity, double cost, double slippage, double commission,
+              unsigned long datetime, const std::string &target, const std::string &location);
 };
 
 #endif //ALGOBACKTESTER_EVENTS_HPP
