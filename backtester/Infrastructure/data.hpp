@@ -34,8 +34,8 @@ public:
 
     // Initializer that builds the complete history of data in BarData form and puts it into the
     // fullhistory item. The parameters are self-explanatory except for the buffer, which is
-    // a value that determines how much earlier data should be pulled before the startdate,
-    // a value that should be defined by the algorithm's maximum history requests
+    // a value that determines how much earlier data should be pulled before the startdate
+    // and should be defined by the algorithm's maximum history requests
     void buildHistory(const std::vector<std::string> &symbol_list, const std::string &startdate,
                       const std::string &enddate, const std::string &interval, const std::vector<std::string> &which,
                       unsigned int buffer);
@@ -51,6 +51,7 @@ private:
 
     // Unit test related private friend members
     FRIEND_TEST(DataHandlerFixture, static_buildshistory);
+    FRIEND_TEST(DataHandlerFixture, static_historyfunction);
 };
 
 // Second class only pulls data when the algorithm requests it during the algo's run thread

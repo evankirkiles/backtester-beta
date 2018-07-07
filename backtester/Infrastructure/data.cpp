@@ -42,6 +42,10 @@ void StaticDataHandler::buildHistory(const std::vector<std::string> &symbol_list
 // StaticDataHandler class, this accesses the fullhistory BarData object which already has all possible data
 // points that could be requested by the algorithm.
 //
+// This function must only be called AFTER calling buildHistory(). It may only have parameters that match
+// values passed in to buildHistory(). Most importantly, days must be less than the initial buffer on the
+// builHistory() function.
+//
 // @param currentTime     the date, in seconds since 1970 epoch, from which the data is being requested
 // @param symbol_list     the tickers of the symbols for which to retrieve the history
 // @param type            "open", "close", "high", "low", "adj", "volume"
@@ -62,7 +66,8 @@ BarData StaticDataHandler::history(unsigned long currentTime, const std::vector<
     --closest;
 
     // Then get all the dates necessary and get their data from fullhistory, placing it into BarData
-    for (int i = 0; i < days; ++i){
+    unsigned long stopDate = currentTime - days * 86400;
+    while (*closest >= stopDate){
         // Put the dates into the dates vector
         bd.dates.emplace_back(*closest);
 
@@ -75,6 +80,7 @@ BarData StaticDataHandler::history(unsigned long currentTime, const std::vector<
                 bd.bars[symbol][type][*closest] = fullhistory.bars[symbol][type][*closest];
             }
         }
+        --closest;
     }
 
     // Reverse the dates to put them in order
