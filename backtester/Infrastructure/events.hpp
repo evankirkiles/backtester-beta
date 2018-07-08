@@ -25,6 +25,20 @@ struct Event {
     virtual ~Event() = default;
 };
 
+// Scheduled Event that is placed onto the heap depending on when the algorithm has scheduled it to run. This
+// is the module that allows for functions to be run at certain times during the calendar. Rather than have a running
+// clock which determines the time the function runs, the functions are simply placed in order on the heap.
+//
+// @member strategy       the strategy class for which the function will be run
+// @member function       the function to be run
+//
+// TODO: implement Scheduled Event support
+struct ScheduledEvent: public Event {
+
+    //....
+
+};
+
 // Signal Event that is produced when the algorithm performs an order. This acts as a middleman between
 // the algorithm and any order events because some orders may be too large to fill in a single day and so
 // must be spread out into multiple orders. The signal will always be on the stack event list.

@@ -6,6 +6,7 @@
 
 // Initializer lists for the construction of each Event Type
 
+// Scheduled Event initializer list
 // Signal Event initializer list
 SignalEvent::SignalEvent(const std::string &p_symbol, const double p_percentage, const unsigned long p_datetime,
                          const std::string &p_target) : datetime(p_datetime),
