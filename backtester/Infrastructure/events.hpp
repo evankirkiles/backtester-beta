@@ -8,6 +8,9 @@
 #ifndef string
 #include <string>
 #endif
+#ifndef Strategy
+#include "Strategies/strategy.hpp"
+#endif
 
 // Base Event structure to which I can add features. All Events must inherit three member variables:
 //
@@ -29,13 +32,15 @@ struct Event {
 // is the module that allows for functions to be run at certain times during the calendar. Rather than have a running
 // clock which determines the time the function runs, the functions are simply placed in order on the heap.
 //
-// @member strategy       the strategy class for which the function will be run
-// @member function       the function to be run
+// @member strategy       a reference to the strategy class instance for which the function will be run
+// @member function       the function to be run, must always be void (return type would be useless anyways)
 //
-// TODO: implement Scheduled Event support
 struct ScheduledEvent: public Event {
+    Strategy& strat;
+    void (Strategy::*function);
 
-    //....
+    // Constructor for the ScheduledEvent
+    ScheduledEvent(Strategy &strategy, void (Strategy::*function), unsigned long when);
 
 };
 

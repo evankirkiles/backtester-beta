@@ -3,12 +3,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(APP_DOMAIN ./domain)
 set(APP_CALC ./calc)
-set(CMAKE_PREFIX_PATH /Users/samkirkiles/Qt/5.11.0/clang_64)
+set(CMAKE_PREFIX_PATH /Users/evankirkiles/Qt/5.11.1/clang_64)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+include_directories(backtester_tests/lib/googletest/include backtester_tests/lib/googletest)
 
 add_executable(runbacktestertests
         YahooFinanceDownloader_UTESTS.cpp

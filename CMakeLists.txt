@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(APP_DOMAIN ./domain)
 set(APP_CALC ./calc)
-set(CMAKE_PREFIX_PATH /Users/samkirkiles/Qt/5.11.0/clang_64)
+set(CMAKE_PREFIX_PATH /Users/evankirkiles/Qt/5.11.1/clang_64)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -14,9 +14,12 @@ set(CMAKE_AUTORCC ON)
 add_executable(algobacktester_run
         main.cpp
         backtester/DataHandling/DataRetriever.cpp
-        backtester/DataHandling/YahooFinanceDownloader.cpp)
+        backtester/DataHandling/YahooFinanceDownloader.cpp
+        backtester/constants.cpp)
 
 include_directories(backtester)
+
+include_directories(backtester_tests/lib/googletest/include backtester_tests/lib/googletest)
 
 add_subdirectory(backtester)
 add_subdirectory(backtester_tests)

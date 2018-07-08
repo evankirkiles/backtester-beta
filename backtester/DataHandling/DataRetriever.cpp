@@ -93,7 +93,6 @@ unsigned long get_epoch_time(const std::string &date) {
     t.tm_hour = 0;
     t.tm_min = 0;
     t.tm_sec = 0;
-    t.tm_hour;
     time_t timeSinceEpoch = mktime(&t);
 
     // Return it as an unsigned long
