@@ -8,8 +8,14 @@
 #ifndef string
 #include <string>
 #endif
+#ifndef queue
+#include <queue>
+#endif
 #ifndef vector
 #include <vector>
+#endif
+#ifndef list
+#include <list>
 #endif
 #ifndef Portfolio
 #include "../Infrastructure/portfolio.hpp"
@@ -27,10 +33,17 @@
 // renaming as necessary.
 
 // Strategy base class to be inherited by all strategies.
+//
+// When the algorithm will be run, each strategy should be run in a different thread. This allows several
+// algorithms to be run rather than just a main strategy and a benchmark. Thus, each algo will have its own
+// event list and will be completely self-contained. Graphics will require some form of lock or mutex if I
+// want to run it in realtime with the algo, but this will probably not be the case as it is so much slower
+// running in realtime compared to running after the algo has finished simulating.
+//
 class Strategy {
 public:
-    // Type specifying whether it is the algo or the bench ("ALGO" or "BENCH")
-    const std::string type;
+    // Property related variables
+    // List of the symbols being used in the algorithm
     const std::vector symbol_list;
 
     // Public portfolio so it can be accessed by graphing components
@@ -40,8 +53,15 @@ protected:
     // Function that schedules other functions within the strategy
     virtual void schedule_function(void &function());
 
+    // The strategy-unique event list
+    // Events on this queue will always be performed over events on the heap list
+    std::queue<Event> stack_eventqueue;
+    // Events on this list will be run in order, is initially populated by MarketEvents when strategy is initialized
+    std::list<Event> heap_eventlist;
+
     // Instances of necessary algorithmic components
     DataHandler dataHandler;
+    ExecutionHandler executionHandler;
 };
 
 #endif //ALGOBACKTESTER_STRATEGY_HPP

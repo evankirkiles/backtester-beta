@@ -16,12 +16,11 @@
 //
 // @member datetime       the simulated time at which the event occurred
 // @member type           "SCHEDULED", "SIGNAL", "ORDER", or "FILL" for the type of the Event
-// @member target         "ALGO" or "BENCH" signifying which algorithm the event is for
 // @member location       "STACK" or "HEAP", specifying when the events should be processed
 //  ''---------->             the STACK's events are processed immediately, while the HEAP's are not
 //
 struct Event {
-    const std::string type, target, location;
+    const std::string type, location;
     const unsigned long datetime;
 
     // Default destructor to allow for polymorphism
@@ -32,16 +31,30 @@ struct Event {
 // is the module that allows for functions to be run at certain times during the calendar. Rather than have a running
 // clock which determines the time the function runs, the functions are simply placed in order on the heap.
 //
-// @member strategy       a reference to the strategy class instance for which the function will be run
 // @member function       the function to be run, must always be void (return type would be useless anyways)
 //
 struct ScheduledEvent: public Event {
-    Strategy& strat;
     void (Strategy::*function);
 
     // Constructor for the ScheduledEvent
-    ScheduledEvent(Strategy &strategy, void (Strategy::*function), unsigned long when);
+    ScheduledEvent(void (Strategy::*function), unsigned long when);
 
+};
+
+// Market Event that is produced by the DataHandler when the strategy is initialized. These are added onto
+// the event heap with set dates, so the portfolio can cycle through the market information and update the
+// holdings on a specified frequency. Scheduled events will be scattered between.
+//
+// @param symbols         a vector of the symbols being updated on the given date
+// @param data            an unordered map of the closes on the given interval wrt their symbol
+//
+struct MarketEvent: public Event {
+    const std::vector<std::string> symbols;
+    const std::unordered_map<std::string, double> data;
+
+    // Constructor for the MarketEvent
+    MarketEvent(const std::vector<std::string>& symbols, const std::unordered_map<std::string, double>& data,
+                unsigned long datetime);
 };
 
 // Signal Event that is produced when the algorithm performs an order. This acts as a middleman between
@@ -56,8 +69,7 @@ struct SignalEvent: public Event {
     const double percentage;
 
     // Constructor for the SignalEvent
-    SignalEvent(const std::string& symbol, double percentage, unsigned long datetime,
-                const std::string &target);
+    SignalEvent(const std::string& symbol, double percentage, unsigned long datetime);
 };
 
 // Order Event that is produced when a signal from the algorithm is received. It is handled by the
@@ -72,8 +84,7 @@ struct OrderEvent: public Event {
     const double percentage;
 
     // Constructor for the OrderEvent
-    OrderEvent(const std::string& symbol, double percentage, unsigned long datetime,
-               const std::string &target, const std::string &location);
+    OrderEvent(const std::string& symbol, double percentage, unsigned long datetime, const std::string &location);
 };
 
 // Fill event which is produced when an order from the algorithm is filled. All slippage and risk
@@ -93,7 +104,7 @@ struct FillEvent: public Event {
 
     // Constructor for the FillEvent
     FillEvent(const std::string& symbol, int quantity, double cost, double slippage, double commission,
-              unsigned long datetime, const std::string &target, const std::string &location);
+              unsigned long datetime, const std::string &location);
 };
 
 #endif //ALGOBACKTESTER_EVENTS_HPP

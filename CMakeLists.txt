@@ -15,6 +15,11 @@ add_executable(algobacktester_run
         main.cpp
         backtester/DataHandling/DataRetriever.cpp
         backtester/DataHandling/YahooFinanceDownloader.cpp
+        backtester/Infrastructure/data.cpp
+        backtester/Infrastructure/events.cpp
+        backtester/Infrastructure/execution.cpp
+        backtester/Infrastructure/portfolio.cpp
+        backtester/Strategies/strategy.cpp
         backtester/constants.cpp)
 
 include_directories(backtester)
