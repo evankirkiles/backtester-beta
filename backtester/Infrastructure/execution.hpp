@@ -17,6 +17,9 @@
 #ifndef DataHandler
 #include "data.hpp"
 #endif
+#ifndef Portfolio
+#include "portfolio.hpp"
+#endif
 
 // Basic execution handler to deal with Order Events
 class ExecutionHandler {
@@ -25,11 +28,16 @@ public:
     // Takes in the Order Event and produces a FillEvent based on simulated slippage and commission
     void processOrder(OrderEvent event);
 
+    // Constructor that creates the Execution Handler with the DataHandler, Portfolio, and event list references
+    explicit ExecutionHandler(boost::ptr_vector<Event>& eventlist, DataHandler& datahandler, Portfolio &portfolio);
+
 private:
     // Reference to the external event list
     boost::ptr_vector<Event>& eventlist;
     // Reference to the external data handler
     DataHandler& datahandler;
+    // Reference to the external portfolio object
+    Portfolio& portfolio;
 };
 
 #endif //ALGOBACKTESTER_EXECUTION_HPP

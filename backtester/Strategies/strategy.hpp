@@ -11,6 +11,15 @@
 #ifndef vector
 #include <vector>
 #endif
+#ifndef Portfolio
+#include "../Infrastructure/portfolio.hpp"
+#endif
+#ifndef DataHandler
+#include "../Infrastructure/data.hpp"
+#endif
+#ifndef ExecutionHandler
+#include "../Infrastructure/execution.hpp"
+#endif
 
 // Strategy header file to be included by both the main strategy and the benchmark. Strategy usage requires
 // writing the strategy code into the strategy.cpp file and the benchmark code into the benchmark.cpp file.
@@ -22,11 +31,17 @@ class Strategy {
 public:
     // Type specifying whether it is the algo or the bench ("ALGO" or "BENCH")
     const std::string type;
-    const std::vector symbol_list = {};
+    const std::vector symbol_list;
+
+    // Public portfolio so it can be accessed by graphing components
+    Portfolio portfolio;
 
 protected:
     // Function that schedules other functions within the strategy
     virtual void schedule_function(void &function());
+
+    // Instances of necessary algorithmic components
+    DataHandler dataHandler;
 };
 
 #endif //ALGOBACKTESTER_STRATEGY_HPP
