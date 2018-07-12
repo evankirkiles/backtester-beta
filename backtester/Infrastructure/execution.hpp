@@ -29,12 +29,13 @@ public:
     void processOrder(OrderEvent event);
 
     // Constructor that creates the Execution Handler with the DataHandler, Portfolio, and event list references
-    explicit ExecutionHandler(boost::ptr_vector<Event>& eventlist, DataHandler& datahandler, Portfolio &portfolio);
+    explicit ExecutionHandler(std::queue<std::unique_ptr<Event>> &stack, std::list<std::unique_ptr<Event>>& heap,
+                              DataHandler& datahandler, Portfolio &portfolio);
 
 private:
     // Reference to the external event list stack and heap
-    std::queue<Event>& stack_eventlist;
-    std::list<Event>& heap_eventlist;
+    std::queue<std::unique_ptr<Event>>& stack_eventlist;
+    std::list<std::unique_ptr<Event>>& heap_eventlist;
     // Reference to the external data handler
     DataHandler& datahandler;
     // Reference to the external portfolio object

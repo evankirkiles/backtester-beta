@@ -20,7 +20,7 @@
 //  ''---------->             the STACK's events are processed immediately, while the HEAP's are not
 //
 struct Event {
-    const std::string type, location;
+    const std::string type;
     const unsigned long datetime;
 
     // Default destructor to allow for polymorphism
@@ -84,7 +84,7 @@ struct OrderEvent: public Event {
     int quantity;
 
     // Constructor for the OrderEvent
-    OrderEvent(const std::string& symbol, int quantity, unsigned long datetime, const std::string &location);
+    OrderEvent(const std::string& symbol, int quantity, unsigned long datetime);
 };
 
 // Fill event which is produced when an order from the algorithm is filled. All slippage and risk
@@ -104,7 +104,7 @@ struct FillEvent: public Event {
 
     // Constructor for the FillEvent
     FillEvent(const std::string& symbol, int quantity, double cost, double slippage, double commission,
-              unsigned long datetime, const std::string &location);
+              unsigned long datetime);
 };
 
 // Unary function for searching the eventlist that helps to return the first date greater than the specified

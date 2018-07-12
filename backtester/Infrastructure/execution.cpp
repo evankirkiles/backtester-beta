@@ -25,16 +25,21 @@ void ExecutionHandler::processOrder(OrderEvent event) {
     if (abs(event.quantity) > priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()]) {
 
         // Cap the quantity at the volume limit
-        event.quantity = static_cast<int>(((event.quantity > 0 ) - (event.quantity < 0)) *
+        int newquantity = static_cast<int>(((event.quantity > 0 ) - (event.quantity < 0)) *
                                           priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()]);
 
         // Make a new OrderEvent for the next latest date (currently functions by adding a day to the event's date
         // and using the custom unary function to find the iterator at the most recent date after.
         auto iter = std::find_if(heap_eventlist.begin(), heap_eventlist.end(), date_compare(event.datetime + 86400));
+        heap_eventlist.insert(iter, std::make_unique<OrderEvent>(event.symbol,
+                                                           event.quantity - priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()],
+                                                           event.datetime + 86400));
 
-        // TODO: reformat the heap event list to support storing instances of classes
+        // TODO: Write the filling mechanism for slippage and risk management
 
     } else {
+
+        // TODO: Write the filling mechanism for slippage and risk management
 
     }
 
@@ -50,8 +55,10 @@ void ExecutionHandler::processOrder(OrderEvent event) {
 // @param eventlist     A reference to the global event list
 // @param datahandler   A reference to the algorithm's datahandler
 //
-ExecutionHandler::ExecutionHandler(boost::ptr_vector<Event> &p_eventlist,
+ExecutionHandler::ExecutionHandler(std::queue<std::unique_ptr<Event>> &p_stack,
+                                   std::list<std::unique_ptr<Event>> &p_heap,
                                    DataHandler &p_datahandler,
-                                    Portfolio &p_portfolio) : eventlist(p_eventlist),
+                                    Portfolio &p_portfolio) : stack_eventlist(p_stack),
+                                                              heap_eventlist(p_heap),
                                                               datahandler(p_datahandler),
                                                               portfolio(p_portfolio) {}

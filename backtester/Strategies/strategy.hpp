@@ -55,9 +55,9 @@ protected:
 
     // The strategy-unique event list
     // Events on this queue will always be performed over events on the heap list
-    std::queue<Event> stack_eventqueue;
+    std::queue<std::unique_ptr<Event>> stack_eventqueue;
     // Events on this list will be run in order, is initially populated by MarketEvents when strategy is initialized
-    std::list<Event> heap_eventlist;
+    std::list<std::unique_ptr<Event>> heap_eventlist;
 
     // Instances of necessary algorithmic components
     DataHandler dataHandler;
