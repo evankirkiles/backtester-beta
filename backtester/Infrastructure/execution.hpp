@@ -32,8 +32,9 @@ public:
     explicit ExecutionHandler(boost::ptr_vector<Event>& eventlist, DataHandler& datahandler, Portfolio &portfolio);
 
 private:
-    // Reference to the external event list
-    boost::ptr_vector<Event>& eventlist;
+    // Reference to the external event list stack and heap
+    std::queue<Event>& stack_eventlist;
+    std::list<Event>& heap_eventlist;
     // Reference to the external data handler
     DataHandler& datahandler;
     // Reference to the external portfolio object

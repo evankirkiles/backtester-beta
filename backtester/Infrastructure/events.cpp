@@ -30,12 +30,12 @@ SignalEvent::SignalEvent(const std::string &p_symbol, const double p_percentage,
                                                         percentage(p_percentage) {}
 
 // Order Event initializer list
-OrderEvent::OrderEvent(const std::string &p_symbol, const double p_percentage, const unsigned long p_datetime,
+OrderEvent::OrderEvent(const std::string &p_symbol, const int p_quantity, const unsigned long p_datetime,
                        const std::string &p_location) : datetime(p_datetime),
                                                         type("ORDER"),
                                                         location(p_location),
                                                         symbol(p_symbol),
-                                                        percentage(p_percentage) {}
+                                                        quantity(p_quantity) {}
 
 // Fill Event initializer list
 FillEvent::FillEvent(const std::string &p_symbol, const int p_quantity, const double p_cost, const double p_slippage,

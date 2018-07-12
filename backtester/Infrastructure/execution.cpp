@@ -22,7 +22,21 @@ void ExecutionHandler::processOrder(OrderEvent event) {
     // setting a threshold percentage of the most recent day's volume and, if the order goes over said
     // threshold, put whatever could not be ordered today into an order for the next day.
     // CURRENT THRESHOLD: 2.5%
+    if (abs(event.quantity) > priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()]) {
 
+        // Cap the quantity at the volume limit
+        event.quantity = static_cast<int>(((event.quantity > 0 ) - (event.quantity < 0)) *
+                                          priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()]);
+
+        // Make a new OrderEvent for the next latest date (currently functions by adding a day to the event's date
+        // and using the custom unary function to find the iterator at the most recent date after.
+        auto iter = std::find_if(heap_eventlist.begin(), heap_eventlist.end(), date_compare(event.datetime + 86400));
+
+        // TODO: reformat the heap event list to support storing instances of classes
+
+    } else {
+
+    }
 
 
     // 5 bps of slippage on each order to simulate buy-ask spread (naive approach)

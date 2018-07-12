@@ -77,14 +77,14 @@ struct SignalEvent: public Event {
 // a single bar, as well as calculate any necessary risk management options.
 //
 // @member symbol         the symbol for which the signal is being sent
-// @member percentage     the percent of holdings requested for the symbol (positive for long, negative for short)
+// @member quantity       the number of shares being bought (not const because needs to be mutable by execution)
 //
 struct OrderEvent: public Event {
     const std::string symbol;
-    const double percentage;
+    int quantity;
 
     // Constructor for the OrderEvent
-    OrderEvent(const std::string& symbol, double percentage, unsigned long datetime, const std::string &location);
+    OrderEvent(const std::string& symbol, int quantity, unsigned long datetime, const std::string &location);
 };
 
 // Fill event which is produced when an order from the algorithm is filled. All slippage and risk
@@ -106,5 +106,18 @@ struct FillEvent: public Event {
     FillEvent(const std::string& symbol, int quantity, double cost, double slippage, double commission,
               unsigned long datetime, const std::string &location);
 };
+
+// Unary function for searching the eventlist that helps to return the first date greater than the specified
+// value. This can be used for insertion, as you can put in an item immediately before this element
+// which mimics scheduling it at the date given.
+struct date_compare : public std::unary_function<std::string, bool> {
+    const unsigned long date;
+    explicit date_compare(const unsigned long p_date) : date(p_date) {}
+    bool operator() (const Event &data) {
+        // Returns true for the first element whose date is later than the given date
+        return (data.datetime > date);
+    }
+};
+
 
 #endif //ALGOBACKTESTER_EVENTS_HPP
