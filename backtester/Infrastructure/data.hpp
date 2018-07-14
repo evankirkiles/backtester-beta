@@ -66,7 +66,7 @@ class DynamicDataHandler:DataHandler {
     // Inherited function from abstract base class DataHandler; gets data from N days back.
     // This data is pulled dynamically onto the stack and deleted when the algorithm data handler
     // function leaves the scope, thus allowing for higher quantities of data to be used efficiently
-    BarData history(unsigned long currenttime, const std::vector<std::string> &symbol_list,
+    BarData history(unsigned long currentTime, const std::vector<std::string> &symbol_list,
                     const std::vector<std::string> &which, const std::string &interval, unsigned int days) override;
 };
 

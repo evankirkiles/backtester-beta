@@ -7,10 +7,11 @@
 // Initializer lists for the construction of each Event Type
 
 // Scheduled Event initializer list
-ScheduledEvent::ScheduledEvent(void (Strategy::*p_function), unsigned long p_datetime) :
+ScheduledEvent::ScheduledEvent(void (*p_function), Strategy& instance, unsigned long p_datetime) :
                                                         datetime(p_datetime),
                                                         type("SCHEDULED"),
-                                                        function(p_function) {}
+                                                        function(p_function),
+                                                        stratInstance(instance){}
 
 // Market Event initializer list
 MarketEvent::MarketEvent(const std::vector<std::string>& p_symbols, const std::unordered_map<std::string, double>& p_data,

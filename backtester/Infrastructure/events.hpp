@@ -8,20 +8,22 @@
 #ifndef string
 #include <string>
 #endif
-#ifndef Strategy
-#include "Strategies/strategy.hpp"
+#ifndef unordered_map
+#include <unordered_map>
+#endif
+#ifndef vector
+#include <vector>
 #endif
 
 // Base Event structure to which I can add features. All Events must inherit three member variables:
 //
 // @member datetime       the simulated time at which the event occurred
 // @member type           "SCHEDULED", "SIGNAL", "ORDER", or "FILL" for the type of the Event
-// @member location       "STACK" or "HEAP", specifying when the events should be processed
 //  ''---------->             the STACK's events are processed immediately, while the HEAP's are not
 //
 struct Event {
     const std::string type;
-    const unsigned long datetime;
+    const unsigned long datetime = 0;
 
     // Default destructor to allow for polymorphism
     virtual ~Event() = default;
@@ -34,10 +36,10 @@ struct Event {
 // @member function       the function to be run, must always be void (return type would be useless anyways)
 //
 struct ScheduledEvent: public Event {
-    void (Strategy::*function);
+    void (*function);
 
     // Constructor for the ScheduledEvent
-    ScheduledEvent(void (Strategy::*function), unsigned long when);
+    ScheduledEvent(void (*function), unsigned long when);
 
 };
 
@@ -49,7 +51,7 @@ struct ScheduledEvent: public Event {
 // @param data            an unordered map of the closes on the given interval wrt their symbol
 //
 struct MarketEvent: public Event {
-    const std::vector<std::string> symbols;
+    std::vector<std::string> symbols;
     const std::unordered_map<std::string, double> data;
 
     // Constructor for the MarketEvent
@@ -110,12 +112,12 @@ struct FillEvent: public Event {
 // Unary function for searching the eventlist that helps to return the first date greater than the specified
 // value. This can be used for insertion, as you can put in an item immediately before this element
 // which mimics scheduling it at the date given.
-struct date_compare : public std::unary_function<std::string, bool> {
-    const unsigned long date;
+struct date_compare {
     explicit date_compare(const unsigned long p_date) : date(p_date) {}
-    bool operator() (const Event &data) {
+    const unsigned long date;
+    bool operator()(const std::unique_ptr<Event> &data) {
         // Returns true for the first element whose date is later than the given date
-        return (data.datetime > date);
+        return (data->datetime > date);
     }
 };
 

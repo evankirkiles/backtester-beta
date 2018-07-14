@@ -44,14 +44,14 @@ class Strategy {
 public:
     // Property related variables
     // List of the symbols being used in the algorithm
-    const std::vector symbol_list;
+    const std::vector<std::string> symbol_list;
 
     // Public portfolio so it can be accessed by graphing components
     Portfolio portfolio;
 
 protected:
     // Function that schedules other functions within the strategy
-    virtual void schedule_function(void &function());
+    virtual void schedule_function(void (*func));
 
     // The strategy-unique event list
     // Events on this queue will always be performed over events on the heap list

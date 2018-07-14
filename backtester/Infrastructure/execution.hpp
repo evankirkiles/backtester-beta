@@ -20,13 +20,22 @@
 #ifndef Portfolio
 #include "portfolio.hpp"
 #endif
+#ifndef queue
+#include <queue>
+#endif
+#ifndef list
+#include <list>
+#endif
 
 // Basic execution handler to deal with Order Events
 class ExecutionHandler {
 public:
 
-    // Takes in the Order Event and produces a FillEvent based on simulated slippage and commission
-    void processOrder(OrderEvent event);
+    // Takes in the Order Event and produces a FillEvent based on fill limits (may split it into multiple orders)
+    void processOrder(const OrderEvent& event);
+
+    // Takes in a Signal Event and converts it into an order based on the portfolio, slippage, and commission
+    void processSignal(const SignalEvent& event);
 
     // Constructor that creates the Execution Handler with the DataHandler, Portfolio, and event list references
     explicit ExecutionHandler(std::queue<std::unique_ptr<Event>> &stack, std::list<std::unique_ptr<Event>>& heap,
