@@ -22,7 +22,8 @@ void ExecutionHandler::processOrder(const OrderEvent& event) {
     // setting a threshold percentage of the most recent day's volume and, if the order goes over said
     // threshold, put whatever could not be ordered today into an order for the next day.
     // CURRENT THRESHOLD: 2.5%
-    if (abs(event.quantity) > priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()] * 0.025) {
+    if (abs(event.quantity) > priceInfo.bars[event.symbol]["volume"][priceInfo.dates.back()] *
+                              order_constants::MKTVOL_THRESHOLD) {
 
         // Cap the quantity at the volume limit
         auto newquantity = static_cast<int>(((event.quantity > 0 ) - (event.quantity < 0)) *

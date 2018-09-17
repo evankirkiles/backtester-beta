@@ -29,7 +29,7 @@ TEST(YahooFinanceDownloaderFixture, correctcrumb) {
     yfd->downloadCSV("AAPL", 1498968000, 1499054400);
 
     // Should have only two lines, but if crumb is not correct then it will have more
-    std::ifstream in((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
+    std::ifstream in((std::string(filepaths::CSV_DIR) + std::string("AAPL.csv")).c_str());
 
     // If crumb was not received then first line will just be "{"
     std::string str;
@@ -38,7 +38,7 @@ TEST(YahooFinanceDownloaderFixture, correctcrumb) {
     EXPECT_NE("{", str);
 
     // Removes the files used for testing
-    std::remove((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
+    std::remove((std::string(filepaths::CSV_DIR) + std::string("AAPL.csv")).c_str());
 }
 
 // Tests whether downloads the correct data
@@ -51,7 +51,7 @@ TEST(YahooFinanceDownloaderFixture, csvdownload) {
 
     // Should only have two lines, the column titles and a single day of data
     bool working = false;
-    std::ifstream in((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
+    std::ifstream in((std::string(filepaths::CSV_DIR) + std::string("AAPL.csv")).c_str());
     std::string str;
     while (std::getline(in , str)) {
         working = str.substr(0, 4) == "Date" || str.substr(0, 10) == "2017-07-03";
@@ -60,5 +60,5 @@ TEST(YahooFinanceDownloaderFixture, csvdownload) {
     EXPECT_TRUE(working);
 
     // Removes the files used for testing
-    std::remove((std::string(constants::CSV_DIR) + std::string("AAPL.csv")).c_str());
+    std::remove((std::string(filepaths::CSV_DIR) + std::string("AAPL.csv")).c_str());
 }

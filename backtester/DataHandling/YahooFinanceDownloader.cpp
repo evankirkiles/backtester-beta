@@ -26,7 +26,7 @@ void YahooFinanceDownloader::downloadCSV(std::string symbol, unsigned long start
 
     // Set cURL run settings
     // Determine cookie file directory
-    curl_easy_setopt(curl, CURLOPT_COOKIEFILE, constants::COOKIE_DIR);
+    curl_easy_setopt(curl, CURLOPT_COOKIEFILE, filepaths::COOKIE_DIR);
     // Set website to go to download the .csv
     curl_easy_setopt(curl, CURLOPT_URL, down_url.c_str());
     // Goes to a redirefcted URL instead of the given one, if one crops up
@@ -35,7 +35,7 @@ void YahooFinanceDownloader::downloadCSV(std::string symbol, unsigned long start
     curl_easy_setopt(curl, CURLOPT_NOBODY, 0L);
 
     // Open the file to write to
-    FILE *fp = fopen((constants::CSV_DIR + symbol + ".csv").c_str(), "wb");
+    FILE *fp = fopen((filepaths::CSV_DIR + symbol + ".csv").c_str(), "wb");
     if (fp) {
 
         // Write the page body to the file
@@ -73,11 +73,11 @@ const char* YahooFinanceDownloader::get_crumb_and_cookies(const std::string &sym
     // Set URL to go to finance.yahoo.com
     curl_easy_setopt(cookiecurl, CURLOPT_URL, std::string("https://finance.yahoo.com/quote/" + symbol + "/history?p=" + symbol).c_str());
     // Set cookie file
-    curl_easy_setopt(cookiecurl, CURLOPT_COOKIEFILE, constants::COOKIE_DIR);
+    curl_easy_setopt(cookiecurl, CURLOPT_COOKIEFILE, filepaths::COOKIE_DIR);
     curl_easy_setopt(cookiecurl, CURLOPT_COOKIELIST, "ALL");
     // Set the cookie file as the cookie jar
     curl_easy_setopt(cookiecurl, CURLOPT_COOKIESESSION, true);
-    curl_easy_setopt(cookiecurl, CURLOPT_COOKIEJAR, constants::COOKIE_DIR);
+    curl_easy_setopt(cookiecurl, CURLOPT_COOKIEJAR, filepaths::COOKIE_DIR);
     // Format the cookie in Netscape format
     curl_easy_setopt(cookiecurl, CURLOPT_COOKIELIST, nline);
     // Goes to a redirected URL instead of the given one, if one crops up
@@ -86,7 +86,7 @@ const char* YahooFinanceDownloader::get_crumb_and_cookies(const std::string &sym
     curl_easy_setopt(cookiecurl, CURLOPT_HEADER, 0);
 
     // Open the file
-    FILE* crumbfile = fopen(constants::CRUMB_DIR, "wb");
+    FILE* crumbfile = fopen(filepaths::CRUMB_DIR, "wb");
     if (crumbfile) {
 
         // Write the page body to the crumb file
@@ -104,7 +104,7 @@ const char* YahooFinanceDownloader::get_crumb_and_cookies(const std::string &sym
     curl_global_cleanup();
 
     // Search for the crumb in newly created crumb file
-    std::ifstream searchFile(constants::CRUMB_DIR);
+    std::ifstream searchFile(filepaths::CRUMB_DIR);
     std::string str;
     while(getline(searchFile, str)) {
 

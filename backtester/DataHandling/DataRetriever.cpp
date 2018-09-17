@@ -26,7 +26,7 @@ BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &s
     bd.dates.reserve(static_cast<unsigned long>(ceil(enddate - startdate) / 86400));
 
     // File line iterator variables
-    std::ifstream csv(std::string(constants::CSV_DIR + symbol + ".csv").c_str());
+    std::ifstream csv(std::string(filepaths::CSV_DIR + symbol + ".csv").c_str());
     std::string line;
     // Skip first line which contains column headers
     std::getline(csv, line);
