@@ -23,7 +23,7 @@ void StaticDataHandler::buildHistory(const std::vector<std::string> &symbol_list
                                      const std::vector<std::string> &which, unsigned int buffer) {
 
     // Initialize a Data Retriever instance
-    DataRetriever dr;
+    YFDDataRetriever dr;
 
     // Iterate through each symbol
     for (const std::string &symbol : symbol_list) {
@@ -126,8 +126,8 @@ BarData DynamicDataHandler::history(unsigned long currenttime, const std::vector
                                     const std::vector<std::string> &which, const std::string &interval,
                                     unsigned int days) {
 
-    // DataRetriever instance
-    DataRetriever dr;
+    // YFDDataRetriever instance
+    YFDDataRetriever dr;
     // BarData object to return and placeholder BarData
     BarData bd;
     BarData placeholder;

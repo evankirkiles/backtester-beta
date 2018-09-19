@@ -13,7 +13,7 @@ set(CMAKE_AUTORCC ON)
 
 add_executable(algobacktester_run
         main.cpp
-        backtester/src/DataHandling/DataRetriever.cpp
+        backtester/src/DataHandling/YFDDataRetriever.cpp
         backtester/src/DataHandling/YahooFinanceDownloader.cpp
         backtester/src/Infrastructure/data.cpp
         backtester/src/Infrastructure/events.cpp

@@ -2,7 +2,7 @@
 // Created by Evan Kirkiles on 6/30/18.
 //
 
-#include "backtester/include/DataRetriever.hpp"
+#include "backtester/include/YFDDataRetriever.hpp"
 
 // Retrieves bars from Yahoo Finance by creating .csv's and reading them into BarData format.
 //
@@ -13,7 +13,7 @@
 // @param which          "open", "low", 'high", "close", "adj", "volume"
 // @return               a BarData containing the data of the specified type in "which"
 //
-BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &startdate, const unsigned long &enddate,
+BarData YFDDataRetriever::getBars(const std::string &symbol, const unsigned long &startdate, const unsigned long &enddate,
                                const std::string &interval,  const std::vector<std::string> &which) {
 
     // Initializes Yahoo Finance Reader on the stack and creates a .csv with the data
@@ -23,6 +23,7 @@ BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &s
     // Cycle through the .csv and append each bar to the information
     // To improve performance, cap the size of the vector as the number of days between start and end
     BarData bd;
+    bd.symbol = symbol;
     bd.dates.reserve(static_cast<unsigned long>(ceil(enddate - startdate) / 86400));
 
     // File line iterator variables
@@ -48,22 +49,22 @@ BarData DataRetriever::getBars(const std::string &symbol, const unsigned long &s
         // Next columns follow the format O H L C A V
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "open") != which.end())
-            bd.bars[symbol]["open"][epochtime] = std::stod(placeholder);
+            bd.bars["open"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "high") != which.end())
-            bd.bars[symbol]["high"][epochtime] = std::stod(placeholder);
+            bd.bars["high"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "low") != which.end())
-            bd.bars[symbol]["low"][epochtime] = std::stod(placeholder);
+            bd.bars["low"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "close") != which.end())
-            bd.bars[symbol]["close"][epochtime] = std::stod(placeholder);
+            bd.bars["close"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "adj") != which.end())
-            bd.bars[symbol]["adj"][epochtime] = std::stod(placeholder);
+            bd.bars["adj"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "volume") != which.end())
-            bd.bars[symbol]["volume"][epochtime] = std::stod(placeholder);
+            bd.bars["volume"][epochtime] = std::stod(placeholder);
     }
 
     // Return the bardata after all lines have been iterated through

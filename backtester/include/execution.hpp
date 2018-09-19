@@ -27,7 +27,16 @@
 #include <list>
 #endif
 
-// Basic execution handler to deal with Order Events
+// Basic execution handler to deal with Signal Events and Order Events. This execution handler performs calculations
+// related to slippage and risk management to simulate real trading scenarios. For example, if an
+// order exceeds a set percentage of the market volume in a day, the execution handler will
+// divide it up into multiple orders.
+//
+// @member stack_eventlist      a pointer to the containing strategy's event stack (which is actually a queue)
+// @member heap_eventlist       a pointer to the containing strategy's event heap
+// @member datahandler          a pointer to the data retrieval system (for use in getting market volume, other stats)
+// @member portfolio            a pointer to the strategy's portfolio to keep track of the holdings
+//
 class ExecutionHandler {
 public:
 
@@ -42,13 +51,13 @@ public:
                               DataHandler& datahandler, Portfolio &portfolio);
 
 private:
-    // Reference to the external event list stack and heap
-    std::queue<std::unique_ptr<Event>>& stack_eventlist;
-    std::list<std::unique_ptr<Event>>& heap_eventlist;
-    // Reference to the external data handler
-    DataHandler& datahandler;
-    // Reference to the external portfolio object
-    Portfolio& portfolio;
+    // Pointers to the external event list stack and heap
+    std::queue<std::unique_ptr<Event>>* stack_eventlist;
+    std::list<std::unique_ptr<Event>>*heap_eventlist;
+    // Pointer to the external data handler
+    DataHandler* datahandler;
+    // Pointer to the external portfolio object
+    Portfolio* portfolio;
 };
 
 #endif //ALGOBACKTESTER_EXECUTION_HPP

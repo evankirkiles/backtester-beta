@@ -15,18 +15,20 @@
 // Packet of data sent by the CSV Reader
 struct BarData {
     // Holds the symbol bar-requested data for each date
-    // Format: bars[symbol][type][date]
-    std::unordered_map<std::string, std::unordered_map<std::string, std::unordered_map<unsigned long, double>>> bars;
+    // The symbol for which the bar data exists
+    std::string symbol;
+    // Format: bars[type][date]
+    std::unordered_map<std::string, std::unordered_map<unsigned long, double>> bars;
     // Vector holding all the dates, SORTED earliest to latest from beginning to end
     std::vector<unsigned long> dates;
 };
 
 // Reads the data into BarData format from the csv
-class DataRetriever {
+class YFDDataRetriever {
 public:
 
     // Basic default constructor
-    explicit DataRetriever() = default;
+    explicit YFDDataRetriever() = default;
     // Downloads the .csv and returns its data in BarData format (FOR THE FIELD YOU REQUEST)
     BarData getBars(const std::string &symbol, const unsigned long &startdate, const unsigned long &enddate,
                     const std::string &interval,  const std::vector<std::string> &which);

@@ -8,7 +8,7 @@
 // Data interfacer that has specialized functions for getting past N days of data
 // based on which data retrieval method the user specified in their algorithm
 
-#include "DataRetriever.hpp"
+#include "YFDDataRetriever.hpp"
 #include <gtest/gtest_prod.h>
 
 // This is the abstract base class from which both methods of data retrieval inherit from,

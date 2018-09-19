@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "include/DataRetriever.hpp"
+#include "include/YFDDataRetriever.hpp"
 
 // Data Retriever test fixture
 class DataRetrieverFixture : public ::testing::Test {
@@ -24,7 +24,7 @@ public:
 TEST(DataRetrieverFixture, datepulling) {
 
   // Instance of Data Retriever
-  std::unique_ptr<DataRetriever> dr(new DataRetriever());
+  std::unique_ptr<YFDDataRetriever> dr(new YFDDataRetriever());
   BarData bardata = dr->getBars("AAPL", get_epoch_time("2017-07-03"), get_epoch_time("2017-07-10"), "1d", {"close"});
 
     // The dates vector should have 5 dates, like so:
