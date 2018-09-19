@@ -2,7 +2,7 @@
 // Created by Evan Kirkiles on 7/6/18.
 //
 
-#include "events.hpp"
+#include "backtester/include/events.hpp"
 
 // Initializer lists for the construction of each Event Type
 
@@ -21,25 +21,25 @@ MarketEvent::MarketEvent(const std::vector<std::string>& p_symbols, const std::u
                                                      data(p_data)  {}
 
 // Signal Event initializer list
-SignalEvent::SignalEvent(const std::string &p_symbol, const double p_percentage, const unsigned long p_datetime) :
+SignalEvent::SignalEvent(std::string p_symbol, const double p_percentage, const unsigned long p_datetime) :
                                                         datetime(p_datetime),
                                                         type("SIGNAL"),
-                                                        symbol(p_symbol),
+                                                        symbol(std::move(p_symbol)),
                                                         percentage(p_percentage) {}
 
 // Order Event initializer list
-OrderEvent::OrderEvent(const std::string &p_symbol, const int p_quantity, const unsigned long p_datetime,
-                       const std::string &p_location) : datetime(p_datetime),
+OrderEvent::OrderEvent(std::string p_symbol, const int p_quantity, const unsigned long p_datetime) :
+                                                        datetime(p_datetime),
                                                         type("ORDER"),
-                                                        symbol(p_symbol),
+                                                        symbol(std::move(p_symbol)),
                                                         quantity(p_quantity) {}
 
 // Fill Event initializer list
-FillEvent::FillEvent(const std::string &p_symbol, const int p_quantity, const double p_cost, const double p_slippage,
-                     const double p_commission, const unsigned long p_datetime, const std::string &p_location) :
+FillEvent::FillEvent(std::string p_symbol, const int p_quantity, const double p_cost, const double p_slippage,
+                     const double p_commission, const unsigned long p_datetime) :
                                                       datetime(p_datetime),
                                                       type("FILL"),
-                                                      symbol(p_symbol),
+                                                      symbol(std::move(p_symbol)),
                                                       quantity(p_quantity),
                                                       cost(p_cost),
                                                       slippage(p_slippage),

@@ -2,7 +2,7 @@
 // Created by Evan Kirkiles on 6/30/18.
 //
 
-#include "DataRetriever.hpp"
+#include "backtester/include/DataRetriever.hpp"
 
 // Retrieves bars from Yahoo Finance by creating .csv's and reading them into BarData format.
 //

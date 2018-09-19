@@ -19,9 +19,8 @@ namespace filepaths {
 
 // Contains all the order-related constants
 namespace order_constants {
-
     // The threshold for which the volume can be filled on the market
-    extern const unsigned int MKTVOL_THRESHOLD;
+    extern const unsigned double MKTVOL_THRESHOLD;
 }
 
 

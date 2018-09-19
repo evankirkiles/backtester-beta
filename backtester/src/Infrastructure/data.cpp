@@ -2,7 +2,7 @@
 // Created by Evan Kirkiles on 7/4/18.
 //
 
-#include "data.hpp"
+#include "backtester/include/data.hpp"
 
 // Static Data Handler which downloads all the possible required data before algorithm is run to reduce
 // internet requests which take a significant amount of time. Does not scale well in terms of memory so
@@ -102,7 +102,6 @@ void appendDates(const BarData &in, BarData &target) {
     if (target.dates.empty()) {
         target.dates = in.dates;
     } else {
-
         // Otherwise, use STL container sorting and other permutations to keep all unique dates
         target.dates.insert(target.dates.end(), in.dates.begin(), in.dates.end());
         std::sort(target.dates.begin(), target.dates.end());

@@ -18,13 +18,13 @@
 #include <list>
 #endif
 #ifndef Portfolio
-#include "../Infrastructure/portfolio.hpp"
+#include "portfolio.hpp"
 #endif
 #ifndef DataHandler
-#include "../Infrastructure/data.hpp"
+#include "data.hpp"
 #endif
 #ifndef ExecutionHandler
-#include "../Infrastructure/execution.hpp"
+#include "execution.hpp"
 #endif
 
 // Strategy header file to be included by both the main strategy and the benchmark. Strategy usage requires

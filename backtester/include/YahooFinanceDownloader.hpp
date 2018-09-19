@@ -12,19 +12,15 @@
 #include <unordered_map>
 #include <cstdio>
 #include <cmath>
-
-// Guarded string include
+// Standard library includes
 #ifndef string
 #include <string>
 #endif
-// Guarded vector include
 #ifndef vector
 #include <vector>
 #endif
-
 // cURL include
 #include <curl/curl.h>
-
 // Program constants include
 #include "constants.hpp"
 

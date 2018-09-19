@@ -1,19 +1,19 @@
 project(backtester)
 
 set(HEADER_FILES
-        constants.hpp
-        DataHandling/YahooFinanceDownloader.hpp
-        DataHandling/DataRetriever.hpp
-        Infrastructure/data.hpp
-        Infrastructure/execution.hpp
-        Infrastructure/portfolio.hpp)
+        include/constants.hpp
+        include/YahooFinanceDownloader.hpp
+        include/DataRetriever.hpp
+        include/data.hpp
+        include/execution.hpp
+        include/portfolio.hpp)
 
 set(SOURCE_FILES
-        constants.cpp
-        DataHandling/YahooFinanceDownloader.cpp
-        DataHandling/DataRetriever.cpp
-        Infrastructure/data.cpp
-        Infrastructure/execution.cpp
-        Infrastructure/portfolio.cpp)
+        src/constants.cpp
+        src/DataHandling/YahooFinanceDownloader.cpp
+        src/DataHandling/DataRetriever.cpp
+        src/Infrastructure/data.cpp
+        src/Infrastructure/execution.cpp
+        src/Infrastructure/portfolio.cpp)
 
 add_library(backtester STATIC ${SOURCE_FILES} ${HEADER_FILES})

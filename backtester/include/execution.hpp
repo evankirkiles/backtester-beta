@@ -9,7 +9,7 @@
 #include "events.hpp"
 #endif
 #ifndef constants
-#include "constants.hpp"
+#include "include/constants.hpp"
 #endif
 #ifndef ptr_vector
 #include <boost/ptr_container/ptr_vector.hpp>
@@ -18,7 +18,7 @@
 #include "data.hpp"
 #endif
 #ifndef Portfolio
-#include "portfolio.hpp"
+#include "include/portfolio.hpp"
 #endif
 #ifndef queue
 #include <queue>

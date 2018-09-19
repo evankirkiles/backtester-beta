@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "DataHandling/DataRetriever.hpp"
+#include "include/DataRetriever.hpp"
 
 // Data Retriever test fixture
 class DataRetrieverFixture : public ::testing::Test {

@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "DataHandling/DataRetriever.hpp"
+#include "include/DataRetriever.hpp"
 
 // Yahoo Finance Downloader test fixture
 class YahooFinanceDownloaderFixture : public ::testing::Test {

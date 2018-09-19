@@ -3,7 +3,7 @@
 //
 
 // Includes
-#include "YahooFinanceDownloader.hpp"
+#include "backtester/include/YahooFinanceDownloader.hpp"
 
 // Downloads CSV data for the given period and symbol on a specific frequency.
 //

@@ -5,6 +5,7 @@
 #ifndef ALGOBACKTESTER_EVENTS_HPP
 #define ALGOBACKTESTER_EVENTS_HPP
 
+// Standard library includes
 #ifndef string
 #include <string>
 #endif
@@ -14,6 +15,9 @@
 #ifndef vector
 #include <vector>
 #endif
+
+// Custom library includes
+#include "strategy.hpp"
 
 // Base Event structure to which I can add features. All Events must inherit three member variables:
 //
@@ -34,21 +38,22 @@ struct Event {
 // clock which determines the time the function runs, the functions are simply placed in order on the heap.
 //
 // @member function       the function to be run, must always be void (return type would be useless anyways)
+// @member stratInstance  the strategy object that owns the member function which will be run
 //
 struct ScheduledEvent: public Event {
     void (*function);
+    Strategy& stratInstance;
 
     // Constructor for the ScheduledEvent
-    ScheduledEvent(void (*function), unsigned long when);
-
+    ScheduledEvent(void (*function), Strategy& strat, unsigned long when);
 };
 
 // Market Event that is produced by the DataHandler when the strategy is initialized. These are added onto
 // the event heap with set dates, so the portfolio can cycle through the market information and update the
 // holdings on a specified frequency. Scheduled events will be scattered between.
 //
-// @param symbols         a vector of the symbols being updated on the given date
-// @param data            an unordered map of the closes on the given interval wrt their symbol
+// @member symbols         a vector of the symbols being updated on the given date
+// @member data            an unordered map of the closes on the given interval wrt their symbol
 //
 struct MarketEvent: public Event {
     std::vector<std::string> symbols;
@@ -71,12 +76,13 @@ struct SignalEvent: public Event {
     const double percentage;
 
     // Constructor for the SignalEvent
-    SignalEvent(const std::string& symbol, double percentage, unsigned long datetime);
+    SignalEvent(std::string symbol, double percentage, unsigned long datetime);
 };
 
 // Order Event that is produced when a signal from the algorithm is received. It is handled by the
 // execution handler which may split the order into multiples if the full order cannot be filled in
-// a single bar, as well as calculate any necessary risk management options.
+// a single bar, as well as calculate any necessary risk management options. Order events can be placed
+// on both the STACK and the HEAP, where the STACK will perform them as soon as possible before any HEAP fill.
 //
 // @member symbol         the symbol for which the signal is being sent
 // @member quantity       the number of shares being bought (not const because needs to be mutable by execution)
@@ -86,7 +92,7 @@ struct OrderEvent: public Event {
     int quantity;
 
     // Constructor for the OrderEvent
-    OrderEvent(const std::string& symbol, int quantity, unsigned long datetime);
+    OrderEvent(std::string symbol, int quantity, unsigned long datetime);
 };
 
 // Fill event which is produced when an order from the algorithm is filled. All slippage and risk
@@ -105,7 +111,7 @@ struct FillEvent: public Event {
     const double cost, slippage, commission;
 
     // Constructor for the FillEvent
-    FillEvent(const std::string& symbol, int quantity, double cost, double slippage, double commission,
+    FillEvent(std::string symbol, int quantity, double cost, double slippage, double commission,
               unsigned long datetime);
 };
 
@@ -115,7 +121,7 @@ struct FillEvent: public Event {
 struct date_compare {
     explicit date_compare(const unsigned long p_date) : date(p_date) {}
     const unsigned long date;
-    bool operator()(const std::unique_ptr<Event> &data) {
+    inline bool operator()(const std::unique_ptr<Event> &data) {
         // Returns true for the first element whose date is later than the given date
         return (data->datetime > date);
     }
