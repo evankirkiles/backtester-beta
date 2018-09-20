@@ -14,7 +14,7 @@
 // @param p_stack_eventqueue  a pointer to the strategy's stack queue (events which are executed immediately)
 // @param p_heap_eventlist    a pointer to the strategy's heap list (events which have a specific date)
 //
-Portfolio::Portfolio(std::vector<std::string> p_symbol_list, unsigned int p_initial_capital, unsigned long p_start_date
+Portfolio::Portfolio(std::vector<std::string> p_symbol_list, unsigned int p_initial_capital, unsigned long p_start_date,
                      std::queue<Event*>* const p_stack_eventqueue, std::list<Event*>* const p_heap_eventlist) :
         symbol_list(std::move(p_symbol_list)),
         initial_capital(p_initial_capital),
@@ -55,6 +55,8 @@ void Portfolio::reset_portfolio(unsigned int initial_capital, unsigned long star
     all_holdings[start_date]["commission"] = 0;
     all_holdings[start_date]["slippage"] = 0;
     all_holdings[start_date]["totalholdings"] = initial_capital;
+    all_holdings[start_date]["returns"] = 0;
+    all_holdings[start_date]["equitycurve"] = 0;
     current_holdings["heldcash"] = initial_capital;
     current_holdings["commission"] = 0;
     current_holdings["slippage"] = 0;
@@ -64,14 +66,46 @@ void Portfolio::reset_portfolio(unsigned int initial_capital, unsigned long star
     performance_map.clear();
 }
 
-// Interprets the data from a market event and updates the holdings to reflect the latest price change.
+// Interprets the data from a market event and updates the holdings to reflect the latest price changes.
 //
 // @param marketEvent          an Event class (which is a marketEvent) that contains the data of the price changes
 //
-// TODO: Implement some sort of buffer system to handle data close together merging to a single line in marketevent
 void Portfolio::update_market(Event *marketEvent) {
     // First downcast the Event so its MarketEvent members can be accessed
     auto event = dynamic_cast<MarketEvent*>(marketEvent);
+    const long date = event->datetime;
+    // Also forward fill the holdings from the previous date in case of non-updated symbols
+    all_holdings[date] = all_holdings.end().operator->().second;
 
-    // Now get the data from the marketEvent
+    // Get the data from the market event and update the current holdings
+    for (const std::string& symbol : event->symbols) {
+        const double newValuation = current_positions[symbol] * event->data.at(symbol);
+        current_holdings[symbol] = newValuation;
+        // Also put the updated holdings data into the all_holdings object
+        all_holdings[date][symbol] = newValuation;
+    }
+
+    // Now iterate through the holdings data to calculate total holdings, returns, and equity curve
+    double total_holdings = all_holdings[date]["heldcash"];
+    for (const std::string& symbol : symbol_list) { total_holdings += all_holdings[date][symbol]; }
+    current_holdings["totalholdings"] = total_holdings;
+    // Wait off slightly on updating the total holdings of this date so as to get the previous curve and totals
+    double returns = (total_holdings / all_holdings[date]["totalholdings"]) - 1;
+    all_holdings[date]["totalholdings"] = total_holdings;
+
+    // Finally, use the total holdings to calculate the returns and the equity curve
+    all_holdings[date]["returns"] = returns;
+    all_holdings[date]["equitycurve"] = (all_holdings[date]["equitycurve"] + 1) * (returns + 1) - 1;
+}
+
+// Interprets the data from a fill event and updates the positions (and fill-related holdings). A fill event
+// contains information about commission, slippage, and the transaction cost. Also, it relays the quantity
+// change in the filled stock.
+//
+// @param fillEvent            an Event class (which is a fillEvent) that contains the fill information
+//
+void Portfolio::update_fill(Event *fillEvent) {
+    // First downcast the Event so its FillEvent members can be accessed
+    auto event = dynamic_cast<FillEvent*>(fillEvent);
+
 }

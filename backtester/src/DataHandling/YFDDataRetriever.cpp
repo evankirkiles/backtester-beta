@@ -48,22 +48,22 @@ BarData YFDDataRetriever::getBars(const std::string &symbol, const unsigned long
         // Next columns follow the format O H L C A V
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "open") != which.end())
-            bd.bars[symbol]["open"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol][hist_data_types_YFD::OPEN][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "high") != which.end())
-            bd.bars[symbol]["high"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol][hist_data_types_YFD::HIGH][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "low") != which.end())
-            bd.bars[symbol]["low"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol][hist_data_types_YFD::LOW][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "close") != which.end())
-            bd.bars[symbol]["close"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol][hist_data_types_YFD::CLOSE][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "adj") != which.end())
-            bd.bars[symbol]["adj"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol][hist_data_types_YFD::ADJ_CLOSE][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "volume") != which.end())
-            bd.bars[symbol]["volume"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol][hist_data_types_YFD::VOLUME][epochtime] = std::stod(placeholder);
     }
 
     // Return the bardata after all lines have been iterated through

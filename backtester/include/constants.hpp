@@ -17,6 +17,18 @@ namespace filepaths {
     extern const char* COOKIE_DIR;
 }
 
+// Contains types of data requested from Yahoo Finance Data
+namespace hist_data_types_YFD {
+
+    // Last close price
+    extern const char* OPEN;
+    extern const char* CLOSE;
+    extern const char* HIGH;
+    extern const char* LOW;
+    extern const char* VOLUME;
+    extern const char* ADJ_CLOSE;
+}
+
 // Contains all the order-related constants
 namespace order_constants {
     // The threshold for which the volume can be filled on the market

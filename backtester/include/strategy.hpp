@@ -64,8 +64,8 @@ public:
     virtual void run();
 
 protected:
-    // Start and end dates, in unix timestamp time
-    const unsigned long start_date, end_date;
+    // Start date, end date, and current backtest simulated date, in unix timestamp time
+    const unsigned long start_date, end_date, current_date;
 
     // Function that schedules other functions within the strategy
     void schedule_function(void (*func));
