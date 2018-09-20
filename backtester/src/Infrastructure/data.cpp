@@ -122,7 +122,7 @@ void appendDates(const BarData &in, BarData &target) {
 // @param days            the number of days back from the currentTime for which to fetch the data
 // @return                a BarData object containing the bars of the given type for the symbols requested
 //
-BarData DynamicDataHandler::history(unsigned long currenttime, const std::vector<std::string> &symbol_list,
+static BarData DynamicDataHandler::history(unsigned long currenttime, const std::vector<std::string> &symbol_list,
                                     const std::vector<std::string> &which, const std::string &interval,
                                     unsigned int days) {
 

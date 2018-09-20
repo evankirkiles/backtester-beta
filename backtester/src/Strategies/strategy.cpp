@@ -3,3 +3,5 @@
 //
 
 #include "backtester/include/strategy.hpp"
+
+// Builds the strategy object

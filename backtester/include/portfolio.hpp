@@ -28,8 +28,21 @@
 // Portfolio class which handles holdings calculations and storing holdings-related information. Reacts only to MARKET
 // events and FILL events as these are the only events which affect the holdings.
 //
+// @member symbol_list           the symbols traded by the algorithm, localized for iterative purposes
+// @member initial_capital       the initial capital to be traded
+// @member all_positions         map of the quantity held in each stock at every date
+// @member current_positions     map of the quantity held in each stock currently
+// @member all_holdings          map of the value of the positions in each stock at every date (includes commission)
+// @member current_holdings      map of the value of the positions currently (includes commission tracker)
+// @member performance_map       contains all the performance statistics calculated at end of backtest
+// @member stack_eventqueue      reference to parent event stack
+// @member heap_eventlist        reference to parent event heap
+//
 class Portfolio {
 public:
+
+    // Initializes the portfolio given the initial capital
+    explicit Portfolio(unsigned int initial_capital);
 
     // Resets the portfolio with a new initial capital amount.
     void reset_portfolio(unsigned int initial_capital);

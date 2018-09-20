@@ -24,13 +24,16 @@ public:
 };
 
 // First class pulls all the possible required data before the algorithm begins, and then runs algo
-// This vastly improves speed (only one internet request compared to many), but does not scale well,
-// only really practical for EOD data with Yahoo Finance
+// This should improve speed (only one internet request compared to many), but does not scale well,
+// only really practical for EOD data with Yahoo Finance. The frequency of the market events and history
+// function calls must be the same, so if a history function call wants minute-frequency data then the fullhistory
+// must contain minute-level data for the entire backtest, which is incredibly inefficient. This data handler
+// probably should not be used outside of EOD data because of its drawbacks.
 class StaticDataHandler:DataHandler {
 public:
 
     // Default constructor
-    explicit StaticDataHandler() = default;
+    StaticDataHandler() = default;
 
     // Initializer that builds the complete history of data in BarData form and puts it into the
     // fullhistory item. The parameters are self-explanatory except for the buffer, which is
@@ -57,16 +60,17 @@ private:
 // Second class only pulls data when the algorithm requests it during the algo's run thread
 // This is less efficient in terms of speed but far more efficient in terms of memory because it does
 // not store every single bar of data--in fact, it gets data dynamically so is more similar to
-// a realtime trader and is likely what will be used when the program is switched to Bloomberg API
+// a realtime trader and is likely what will be used when the program is switched to Bloomberg API.
+//
+// The market events list initialized will first be loaded in from a history call with daily frequency
+// for performance reporting. Then, later history calls are free to request whatever frequency they want
+// from the online data provider.
 class DynamicDataHandler:DataHandler {
-
-    // Default constructor
-    explicit DynamicDataHandler() = default;
 
     // Inherited function from abstract base class DataHandler; gets data from N days back.
     // This data is pulled dynamically onto the stack and deleted when the algorithm data handler
     // function leaves the scope, thus allowing for higher quantities of data to be used efficiently
-    BarData history(unsigned long currentTime, const std::vector<std::string> &symbol_list,
+    static BarData history(unsigned long currentTime, const std::vector<std::string> &symbol_list,
                     const std::vector<std::string> &which, const std::string &interval, unsigned int days) override;
 };
 
