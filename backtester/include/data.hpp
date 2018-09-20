@@ -47,7 +47,7 @@ public:
 
 private:
     // Map of all the data downloaded beforehand in the form of a BarData item
-    BarData  fullhistory;
+    BarData fullhistory;
 
     // Unit test related private friend members
     FRIEND_TEST(DataHandlerFixture, static_buildshistory);

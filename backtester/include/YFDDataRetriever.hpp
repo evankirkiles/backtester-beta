@@ -15,10 +15,8 @@
 // Packet of data sent by the CSV Reader
 struct BarData {
     // Holds the symbol bar-requested data for each date
-    // The symbol for which the bar data exists
-    std::string symbol;
-    // Format: bars[type][date]
-    std::unordered_map<std::string, std::unordered_map<unsigned long, double>> bars;
+    // Format: bars[symbol][type][date]
+    std::unordered_map<std::string, std::unordered_map<std::string, std::unordered_map<unsigned long, double>>> bars;
     // Vector holding all the dates, SORTED earliest to latest from beginning to end
     std::vector<unsigned long> dates;
 };

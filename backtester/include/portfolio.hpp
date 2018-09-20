@@ -38,12 +38,12 @@ public:
     // stock in the portfolio (hopefully). If a stock holding does not get updated with a market event on a day where
     // another stock is updated, then the holdings are forward filled. By passing the event in as a unique pointer,
     // no other instances of this unique pointer can exist so first must be removed from the stack and then called in.
-    void update_market(std::unique_ptr<Event> marketEvent);
+    void update_market(Event* marketEvent);
 
     // Takes a fill event and uses it to update the positions and holdings for a specific stock. The fill event comes
     // from the execution handler and contains a buy or sell quantity that has already been performed.
     // Parameter is a unique poniter so do not have to make unnecessary copy and downcast when function is called.
-    void update_fill(std::unique_ptr<Event> fillEvent);
+    void update_fill(Event* fillEvent);
 
     // Calculates the performance statistics for a finished backtest. Kind of inefficient and could probably be
     // improved by using internet algorithms for dynamically updating stats such as mean and variance. Oh well.
@@ -67,8 +67,8 @@ private:
     std::unordered_map<std::string, double> performance_map;
 
     // Local pointers to the event stack and heap
-    std::queue<std::unique_ptr<Event>>* stack_eventqueue;
-    std::list<std::unique_ptr<Event>>* heap_eventlist;
+    std::queue<Event*>* stack_eventqueue;
+    std::list<Event*>* heap_eventlist;
 };
 
 #endif //ALGOBACKTESTER_PORTFOLIO_HPP

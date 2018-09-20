@@ -23,7 +23,6 @@ BarData YFDDataRetriever::getBars(const std::string &symbol, const unsigned long
     // Cycle through the .csv and append each bar to the information
     // To improve performance, cap the size of the vector as the number of days between start and end
     BarData bd;
-    bd.symbol = symbol;
     bd.dates.reserve(static_cast<unsigned long>(ceil(enddate - startdate) / 86400));
 
     // File line iterator variables
@@ -49,22 +48,22 @@ BarData YFDDataRetriever::getBars(const std::string &symbol, const unsigned long
         // Next columns follow the format O H L C A V
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "open") != which.end())
-            bd.bars["open"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol]["open"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "high") != which.end())
-            bd.bars["high"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol]["high"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "low") != which.end())
-            bd.bars["low"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol]["low"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "close") != which.end())
-            bd.bars["close"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol]["close"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "adj") != which.end())
-            bd.bars["adj"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol]["adj"][epochtime] = std::stod(placeholder);
         ss >> placeholder;
         if (std::find(which.begin(), which.end(), "volume") != which.end())
-            bd.bars["volume"][epochtime] = std::stod(placeholder);
+            bd.bars[symbol]["volume"][epochtime] = std::stod(placeholder);
     }
 
     // Return the bardata after all lines have been iterated through

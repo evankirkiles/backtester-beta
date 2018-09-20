@@ -34,7 +34,7 @@
 
 // Strategy base class to be inherited by all strategies.
 //
-// When the algorithm will be run, each strategy should be run in a different thread. This allows several
+// When the algorithm is run, each strategy should be run in a different thread. This allows several
 // algorithms to be run rather than just a main strategy and a benchmark. Thus, each algo will have its own
 // event list and will be completely self-contained. Graphics will require some form of lock or mutex if I
 // want to run it in realtime with the algo, but this will probably not be the case as it is so much slower
@@ -55,9 +55,9 @@ protected:
 
     // The strategy-unique event list
     // Events on this queue will always be performed over events on the heap list
-    std::queue<std::unique_ptr<Event>> stack_eventqueue;
+    std::queue<Event*> stack_eventqueue;
     // Events on this list will be run in order, is initially populated by MarketEvents when strategy is initialized
-    std::list<std::unique_ptr<Event>> heap_eventlist;
+    std::list<Event*> heap_eventlist;
 
     // Instances of necessary algorithmic components
     DataHandler dataHandler;
