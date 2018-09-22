@@ -41,8 +41,7 @@
 class Portfolio {
 public:
     // Initializes the portfolio given the symbols, initial capital, and references to the STACK and HEAP
-    explicit Portfolio(std::vector<std::string> symbol_list, unsigned int initial_capital, unsigned long start_date,
-                       std::queue<Event*>* stack_eventqueue, std::list<Event*>* heap_eventlist);
+    explicit Portfolio(std::vector<std::string> symbol_list, unsigned int initial_capital, unsigned long start_date);
 
     // Resets the portfolio with a new initial capital amount.
     void reset_portfolio(unsigned int initial_capital, unsigned long start_date);
@@ -78,10 +77,6 @@ private:
     // Performance map holding the evaluation statistics calculated at the end of a backtest, including:
     //  --> alpha, beta, sharpe ratio, sortino ratio, high water mark, max drawdown
     std::unordered_map<std::string, double> performance_map;
-
-    // Local pointers to the event stack and heap
-    std::queue<Event*>* const stack_eventqueue;
-    std::list<Event*>* const heap_eventlist;
 };
 
 #endif //ALGOBACKTESTER_PORTFOLIO_HPP

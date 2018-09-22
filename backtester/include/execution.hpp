@@ -39,21 +39,24 @@
 //
 class ExecutionHandler {
 public:
+    // Constructor that creates the Execution Handler with the DataHandler, Portfolio, and event list references
+    ExecutionHandler(std::queue<Event*>* stack, std::list<Event*>* heap,
+                              DataHandler* datahandler, Portfolio* portfolio);
 
     // Takes in the Order Event and produces a FillEvent based on fill limits (may split it into multiple orders)
-    void processOrder(const OrderEvent& event);
-
+    void process_order(const OrderEvent &event);
     // Takes in a Signal Event and converts it into an order based on the portfolio, slippage, and commission
-    void processSignal(const SignalEvent& event);
+    void process_signal(const SignalEvent &event);
 
-    // Constructor that creates the Execution Handler with the DataHandler, Portfolio, and event list references
-    explicit ExecutionHandler(std::queue<std::unique_ptr<Event>> &stack, std::list<std::unique_ptr<Event>>& heap,
-                              DataHandler& datahandler, Portfolio &portfolio);
+    // Calculates the IB commission on an order based on a quantity
+    double calculate_commission(int quantity);
+    // Calculates the slippage on an order
+    double
 
 private:
     // Pointers to the external event list stack and heap
-    std::queue<std::unique_ptr<Event>>* stack_eventlist;
-    std::list<std::unique_ptr<Event>>*heap_eventlist;
+    std::queue<Event*>* stack_eventlist;
+    std::list<Event*>*heap_eventlist;
     // Pointer to the external data handler
     DataHandler* datahandler;
     // Pointer to the external portfolio object

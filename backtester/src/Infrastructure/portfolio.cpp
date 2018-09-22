@@ -14,13 +14,10 @@
 // @param p_stack_eventqueue  a pointer to the strategy's stack queue (events which are executed immediately)
 // @param p_heap_eventlist    a pointer to the strategy's heap list (events which have a specific date)
 //
-Portfolio::Portfolio(std::vector<std::string> p_symbol_list, unsigned int p_initial_capital, unsigned long p_start_date,
-                     std::queue<Event*>* const p_stack_eventqueue, std::list<Event*>* const p_heap_eventlist) :
+Portfolio::Portfolio(std::vector<std::string> p_symbol_list, unsigned int p_initial_capital, unsigned long p_start_date) :
         symbol_list(std::move(p_symbol_list)),
         initial_capital(p_initial_capital),
-        start_date(p_start_date),
-        stack_eventqueue(p_stack_eventqueue),
-        heap_eventlist(p_heap_eventlist) {
+        start_date(p_start_date) {
 
     // Call reset_portfolio to limit code duplication when building the empty holdings and positions
     reset_portfolio(p_initial_capital, p_start_date);
@@ -76,6 +73,9 @@ void Portfolio::update_market(Event *marketEvent) {
     const long date = event->datetime;
     // Also forward fill the holdings from the previous date in case of non-updated symbols
     all_holdings[date] = all_holdings.end().operator->().second;
+    all_holdings[date]["commission"] = current_holdings["commission"];
+    all_holdings[date]["slippage"] = current_holdings["slippage"];
+    all_holdings[date]["heldcash"] = current_holdings["heldcash"];
 
     // Get the data from the market event and update the current holdings
     for (const std::string& symbol : event->symbols) {
@@ -83,6 +83,9 @@ void Portfolio::update_market(Event *marketEvent) {
         current_holdings[symbol] = newValuation;
         // Also put the updated holdings data into the all_holdings object
         all_holdings[date][symbol] = newValuation;
+
+        // Finally, update the positions map
+        all_positions[date][symbol] = current_positions[symbol];
     }
 
     // Now iterate through the holdings data to calculate total holdings, returns, and equity curve
@@ -108,4 +111,17 @@ void Portfolio::update_fill(Event *fillEvent) {
     // First downcast the Event so its FillEvent members can be accessed
     auto event = dynamic_cast<FillEvent*>(fillEvent);
 
+    // Update holdings list with calculated fill information
+    current_holdings[event->symbol] += event->cost;
+    current_holdings["commission"] += event->commission;
+    current_holdings["slippage"] += event->slippage;
+    current_holdings["heldcash"] -= event->cost + event->commission + event->slippage;
+    current_holdings["totalholdings"] -= event->commission + event->slippage;
+
+    // Now update the positions
+    current_positions[event->symbol] += event->quantity;
 }
+
+// Fills the performance map after a backtest's finished run. Currently calculated statistics:
+//   --> mean, variance, Sharpe ratio, highwater mark, max drawdown
+// Actually, does not calculate Sharpe raito yet because need benchmark market to compare

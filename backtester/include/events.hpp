@@ -121,8 +121,21 @@ struct FillEvent: public Event {
 struct date_compare {
     explicit date_compare(const unsigned long p_date) : date(p_date) {}
     const unsigned long date;
-    inline bool operator()(const std::unique_ptr<Event> &data) {
+    inline bool operator()(const Event* data) {
         // Returns true for the first element whose date is later than the given date
+        return (data->datetime > date);
+    }
+};
+
+// Unary function for searching the event list to return an iterator to the next market event. This is to be used
+// for insertion in order events, as order events which need to be split up will need to order on future days
+// which are not necessarily 24 hours in the future. Therefore, they need to be ordered after next market update.
+struct mkt_date_compare {
+    explicit mkt_date_compare(const unsigned long p_date) : date(p_date) {}
+    const unsigned long date;
+    inline bool operator() (const Event* data) {
+        // Returns true for the first market event whose date is after the given date
+        if (data->type != "MARKET") { return false; }
         return (data->datetime > date);
     }
 };
