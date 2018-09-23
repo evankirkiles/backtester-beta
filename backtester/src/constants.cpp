@@ -34,4 +34,6 @@ namespace order_constants {
 
     // The threshold for which the volume can be filled on the market
     const unsigned double MKTVOL_THRESHOLD = 0.025;
+    // The bps slippage to simulate the buy-ask spread not going in your favor
+    const unsigned double BPS_DECREASE = 0.0005;
 }

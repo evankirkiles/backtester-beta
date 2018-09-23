@@ -51,7 +51,7 @@ public:
     // Calculates the IB commission on an order based on a quantity
     double calculate_commission(int quantity);
     // Calculates the slippage on an order
-    double
+    double calculate_slippage(int* quantity);
 
 private:
     // Pointers to the external event list stack and heap

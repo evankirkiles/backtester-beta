@@ -43,6 +43,8 @@ void ExecutionHandler::process_order(const OrderEvent &event) {
 
     // Calculate the cost of the order now with the most recent price
     double cost = priceInfo.bars[event.symbol][hist_data_types_YFD::CLOSE][priceInfo.dates.back()] * quantity;
+    // Change the costs and quantity and slippage
+    double slippage = calculate_slippage(&quantity);
 
     // Now write the quantity and order information into a new fill event which is put onto the stack
 //    stack_eventlist->emplace(new FillEvent, event.symbol, quantity, cost, );
@@ -50,13 +52,17 @@ void ExecutionHandler::process_order(const OrderEvent &event) {
 
     // 5 bps of slippage on each order to simulate buy-ask spread (naive approach)
 
-
 }
 
 // Calculates the commission for a quantity of stock, currently using Interactive Broker's prices.
 double ExecutionHandler::calculate_commission(int quantity) {
     // Minimum cost is $1.30 on Interactive Brokers, but this logic is very flawed
     return (quantity <= 500) ? std::max(1.3, 0.013 * quantity) : std::max(1.3, 0.008*quantity);
+}
+
+// Calculates the slippage for a quantity of stock
+double ExecutionHandler::calculate_slippage(int *quantity) {
+
 }
 
 // Constructor for the Execution Handler that creates the references to the global eventlist

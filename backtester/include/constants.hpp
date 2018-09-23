@@ -33,6 +33,8 @@ namespace hist_data_types_YFD {
 namespace order_constants {
     // The threshold for which the volume can be filled on the market
     extern const unsigned double MKTVOL_THRESHOLD;
+    // The bps slippage to simulate the buy-ask spread not going in your favor
+    extern const unsigned double BPS_DECREASE;
 }
 
 
